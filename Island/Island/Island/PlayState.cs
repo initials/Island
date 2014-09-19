@@ -177,6 +177,7 @@ FlxColor.ToColor("#000000")
             waterGrp = new FlxGroup();
             pellets = new FlxGroup();
 
+            Vector2 startPos = new Vector2(0,0) ;
 
             for (int i = 0; i < caveLevel.GetLength(1); i++)
             {
@@ -185,6 +186,12 @@ FlxColor.ToColor("#000000")
                     //string toPrint = tiles[y, i];
                     if (Convert.ToInt32(caveLevel[y, i]) != 0)
                     {
+
+                        if (startPos.X == 0)
+                        {
+                            startPos = new Vector2(i * 8, y * 8);
+
+                        }
                         FlxSprite x = new FlxSprite(i * 8, y * 8);
                         //x.createGraphic(8, 8, colors[Convert.ToInt32(caveLevel[y, i])]);
                         x.loadGraphic("autotilesIsland", false, false, 8, 8);
@@ -229,13 +236,13 @@ FlxColor.ToColor("#000000")
             //m.loadGraphic("flixel/cursor");
             //add(m);
 
-            shadow = new FlxSprite(64, 64);
+            shadow = new FlxSprite(startPos.X, startPos.Y);
             shadow.createGraphic(8, 8, Color.Black);
             shadow.debugName = "onground";
             shadow.alpha = 0.5f;
             add(shadow);
 
-            player = new FlxSprite(64, 64);
+            player = new FlxSprite(startPos.X, startPos.Y);
             player.createGraphic(8, 8, colors[12]);
             add(player);
 
@@ -380,9 +387,9 @@ FlxColor.ToColor("#000000")
             {
                 FlxG.username = FlxU.randomString(32);
 
-                FlxOnlineStatCounter.sendStats("theisland", "-", (int)elapsedInState*100);
+                FlxOnlineStatCounter.sendStats("theisland", "-", (int)(elapsedInState*100));
 
-                FlxG.state = new IntroState();
+                FlxG.state = new WinState();
                 return;
             }
 
