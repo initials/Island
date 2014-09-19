@@ -1,0 +1,19 @@
+﻿x=256
+y=224
+fullscreen=0
+zoom=1
+
+
+
+x=1024
+y=896
+fullscreen=0
+zoom=4
+
+x=256
+y=224
+fullscreen=0
+zoom=1
+
+
+//RESOLUTION : The NES's visible display is 256 x 224 pixels. Simple and easy.
