@@ -10,19 +10,19 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Island
 {
-    class Ball : FlxSprite
+    class Lee : FlxSprite
     {
 
-        public Ball(int xPos, int yPos)
+        public Lee(int xPos, int yPos)
             : base(xPos, yPos)
         {
-            loadGraphic("putt/ball", false, false, 4, 4);
-            setDrags(10, 10);
+            loadGraphic(FlxG.Content.Load<Texture2D>("putt/lee"), true, false, 137, 133);
+
         }
 
         override public void update()
         {
-            scale = (float)Convert.ToDouble((y / FlxG.height));
+
 
             base.update();
 

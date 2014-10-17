@@ -29,7 +29,7 @@ namespace Island
 
             if (elapsedInState > 1.0f)
             {
-                menu.color = FlxColor.randomColor();
+                //menu.color = FlxColor.randomColor();
 
                 if (elapsedInState > 2.0f)
                 {

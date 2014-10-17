@@ -74,6 +74,8 @@
   <ItemGroup>
     <Compile Include="IntroState.cs" />
     <Compile Include="putt\Ball.cs" />
+    <Compile Include="putt\Hole.cs" />
+    <Compile Include="putt\Lee.cs" />
     <Compile Include="putt\LoadRomState.cs" />
     <Compile Include="putt\MenuState.cs" />
     <Compile Include="PlayState.cs" />

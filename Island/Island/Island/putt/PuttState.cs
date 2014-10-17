@@ -35,11 +35,13 @@ namespace Island
 
 
         private Ball ball;
-        private FlxSprite hole;
+        private Hole hole;
 
         private FlxText text;
 
         private int selected;
+
+        private Lee lee;
 
         public enum GameState
         {
@@ -70,9 +72,9 @@ namespace Island
 
             playAgain = new List<string> { "Yes", "No" };
 
-            //game = new FlxSprite(0, 0);
-            //game.loadGraphic("putt/game", true, false, 256, 224);
-            //add(game);
+            game = new FlxSprite(0, 0);
+            game.loadGraphic("putt/bg", true, false, 256, 224);
+            add(game);
 
             text = new FlxText(2, 2, 200);
             text.setFormat(null, 1, Color.White, FlxJustification.Left, Color.Black);
@@ -82,11 +84,11 @@ namespace Island
             ball = new Ball(FlxG.width/2, FlxG.height - 10);
             add(ball);
 
-            hole = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
-            hole.createGraphic(8, 8, Color.Black);
+            hole = new Hole(FlxG.width / 2, FlxG.height / 2);
             add(hole);
 
-
+            lee = new Lee(FlxG.width / 5, FlxG.height - 140);
+            add(lee);
 
         }
 
