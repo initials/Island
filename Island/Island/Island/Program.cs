@@ -31,7 +31,9 @@ namespace Loader_Four
             int w = FlxG.resolutionWidth / FlxG.zoom;
             int h = FlxG.resolutionHeight / FlxG.zoom;
 
-            initGame(w, h, new Island.IntroState(), new Color(15, 15, 15), true, new Color(5, 5, 5));
+            //initGame(w, h, new Island.IntroState(), new Color(15, 15, 15), true, new Color(5, 5, 5));
+
+            initGame(w, h, new Island.MenuState(), new Color(15, 15, 15), false, new Color(5, 5, 5));
 
             FlxG.debug = false;
 

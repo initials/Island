@@ -62,9 +62,14 @@ Content\initials\SpaceMarine.xnb
 Content\fx\BloomCombine.xnb
 Content\fx\BloomExtract.xnb
 Content\fx\GaussianBlur.xnb
+Content\flixel\transitionBlack_40x40.xnb
+Content\initials\healthBar.xnb
 Content\Palette_NTSC.xnb
 Content\autotilesIsland.xnb
 Content\water.xnb
+Content\putt\menu.xnb
+Content\putt\Lee Trevino's Fighting Golf (U)-1.xnb
+Content\putt\game.xnb
 OgmoEditor2\OgmoEditor2Project.oep
 OgmoEditor2\SportsGround.oel
 GAMESETTINGS.txt
@@ -132,3 +137,5 @@ Content\buttons\MapWhiteGameboy.xnb
 Content\flixel\autotilesIsland_16x16.xnb
 Content\flixel\autotilesIsland.xnb
 Content\initials\boats.xnb
+Content\flixel\transitionBlack_40x40.xnb
+Content\initials\healthBar.xnb
