@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IntroState.cs" />
+    <Compile Include="putt\Aim.cs" />
     <Compile Include="putt\Ball.cs" />
     <Compile Include="putt\Hole.cs" />
     <Compile Include="putt\Lee.cs" />

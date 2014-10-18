@@ -16,7 +16,11 @@ namespace Island
         public Lee(int xPos, int yPos)
             : base(xPos, yPos)
         {
-            loadGraphic(FlxG.Content.Load<Texture2D>("putt/lee"), true, false, 137, 133);
+            loadGraphic(FlxG.Content.Load<Texture2D>("putt/lee_150x150"), true, false, 150, 150);
+            loadAnimationsFromGraphicsGaleCSV("content/putt/lee_150x150.csv", null, null, true);
+
+            boundingBoxOverride = false;
+
 
         }
 

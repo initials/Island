@@ -74,6 +74,10 @@ Content\putt\ball.xnb
 Content\putt\bg.xnb
 Content\putt\hole.xnb
 Content\putt\lee.xnb
+Content\putt\lee_150x150.xnb
+Content\putt\ball_8x8.xnb
+Content\putt\lee_150x150.csv
+Content\putt\ball_8x8.csv
 OgmoEditor2\OgmoEditor2Project.oep
 OgmoEditor2\SportsGround.oel
 GAMESETTINGS.txt

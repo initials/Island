@@ -27,16 +27,16 @@ namespace Island
         override public void update()
         {
 
-            if (elapsedInState > 1.0f)
-            {
-                //menu.color = FlxColor.randomColor();
+            //if (elapsedInState > 1.0f)
+            //{
+            //    //menu.color = FlxColor.randomColor();
 
-                if (elapsedInState > 2.0f)
-                {
-                    elapsedInState = 0;
-                }
+            //    if (elapsedInState > 2.0f)
+            //    {
+            //        elapsedInState = 0;
+            //    }
 
-            }
+            //}
 
             if (FlxControl.CANCELJUSTPRESSED)
             {
@@ -45,7 +45,8 @@ namespace Island
 
             if (FlxControl.ACTIONJUSTPRESSED)
             {
-                FlxG.state = new PuttState();
+                if (elapsedInState > 0.15f)
+                    FlxG.state = new PuttState();
             }
 
             base.update();

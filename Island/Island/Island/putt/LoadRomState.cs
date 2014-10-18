@@ -54,7 +54,7 @@ namespace Island
 
 
             gamesDisplay = new FlxText(2, 2, 200);
-            gamesDisplay.setFormat(null, 1, Color.White, FlxJustification.Left, Color.Black);
+            gamesDisplay.setFormat(null, 1, Color.White, FlxJustification.Left, Color.Black); //FlxG.Content.Load<SpriteFont> ("")
             add(gamesDisplay);
 
 

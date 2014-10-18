@@ -43,13 +43,19 @@ namespace Island
 
         private Lee lee;
 
+        private Aim aim;
+        private FlxBar power;
+
+
+
         public enum GameState
         {
             ChooseClub = 0,
             ChooseForce = 1,
             Swing = 2,
-            BallInPlay = 3,
-            PlayAgain = 4
+            Power = 3,
+            BallInPlay = 4,
+            PlayAgain = 5
         }
 
         public GameState state = GameState.ChooseClub;
@@ -74,6 +80,8 @@ namespace Island
 
             game = new FlxSprite(0, 0);
             game.loadGraphic("putt/bg", true, false, 256, 224);
+            game.boundingBoxOverride = false;
+
             add(game);
 
             text = new FlxText(2, 2, 200);
@@ -87,13 +95,30 @@ namespace Island
             hole = new Hole(FlxG.width / 2, FlxG.height / 2);
             add(hole);
 
-            lee = new Lee(FlxG.width / 5, FlxG.height - 140);
+            lee = new Lee(FlxG.width / 6, FlxG.height - 170);
             add(lee);
+
+            aim = new Aim(1, FlxG.height / 2);
+            
+            add(aim);
+
+            power = new FlxBar(5, FlxG.height - 20, FlxBar.FILL_LEFT_TO_RIGHT, 50, 4, null, "", 0, 50, true);
+            add(power);
+            power.visible = false;
 
         }
 
         override public void update()
         {
+
+            if (FlxG.keys.justPressed(Keys.B))
+            {
+                FlxG.showBounds = !FlxG.showBounds;
+
+            }
+
+
+
             text.text = state.ToString();
 
             if (FlxControl.LEFTJUSTPRESSED)
@@ -102,7 +127,7 @@ namespace Island
 
                 if (selected < 0) selected = 0;
             }
-            if (FlxControl.RIGHTJUSTPRESSED)
+            if (FlxControl.RIGHTJUSTPRESSED || FlxG.mouse.justPressed() )
             {
                 selected++;
             }
@@ -112,6 +137,13 @@ namespace Island
                 /// Now, choose a club. 
                 if (state == GameState.ChooseClub)
                 {
+                    
+                    ball.reset(FlxG.width / 2 - 7, FlxG.height - 30);
+                    ball.visible = true;
+                    ball.velocity.Y = 0;
+                    ball.velocity.X = 0;
+                    ball.play("size2");
+
 
                     text.text = clubs[selected].ToString();
 
@@ -123,6 +155,8 @@ namespace Island
                     }
                     else if (FlxControl.ACTIONJUSTPRESSED)
                     {
+                        lee.play("talk");
+
                         text.text = "May I suggest a Putter";
 
                         suggestionForClubNoted = true;
@@ -150,10 +184,31 @@ namespace Island
                 /// Now, push seven eight seven to swing.
                 if (state == GameState.Swing)
                 {
+                    aim.startAim = true;
+
                     if (FlxControl.ACTIONJUSTPRESSED)
                     {
-                        ball.velocity.Y = -60;
+                        aim.startAim = false;
+                        state = GameState.Power;
+                        return;
+                    }
+                }
+                if (state == GameState.Power)
+                {
+                    power.visible = true;
+                    power.setValue( aim.health );
 
+                    //Console.WriteLine("Health {0}", p);
+
+
+                    if (FlxControl.ACTIONJUSTPRESSED)
+                    {
+                        float an = FlxU.getAngle(new Vector2(ball.x, ball.y), new Vector2(aim.x, aim.y));
+                        Console.WriteLine("Angle to shoot is {0}", an);
+                        ball.angle = an + 90;
+                        ball.setVelocityFromAngle(aim.health * 2);
+                        ball.angle = 0;
+                        aim.startAim = false;
                         state = GameState.BallInPlay;
                         return;
                     }
@@ -177,6 +232,9 @@ namespace Island
                     if (FlxControl.ACTIONJUSTPRESSED && selected==0)
                     {
                         /// You have selected Yes;
+                        
+                        hole.reset(FlxU.random(20, FlxG.width - 20), hole.y);
+                         
                         state = GameState.ChooseClub;
                         return;
                     }

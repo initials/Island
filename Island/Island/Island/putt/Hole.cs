@@ -18,6 +18,13 @@ namespace Island
         {
             loadGraphic(FlxG.Content.Load<Texture2D>("putt/hole"), true, false, 15, 40);
 
+            width = 5;
+            height = 2;
+
+            setOffset(10, 38);
+
+
+
         }
 
         override public void update()
