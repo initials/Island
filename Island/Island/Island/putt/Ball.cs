@@ -24,7 +24,7 @@ namespace Island
             setDrags(10, 10);
             width = 4;
             height = 4;
-            setOffset(2, 2);
+            setOffset(2, 4);
 
 
         }
@@ -33,13 +33,18 @@ namespace Island
         {
             scale = (float)Convert.ToDouble((y / FlxG.height));
             if (scale < 0.75f) play("size3");
-            else if (scale < 0.5f) play("size4");
+            else if (scale < 0.7f) play("size4");
 
 
             if (y < FlxG.height / 2)
             {
                 setDrags(44, 44);
             }
+            else if (y < (FlxG.height / 2) - 40)
+            {
+                setDrags(144, 144);
+            }
+
             else
             {
                 setDrags(10, 10);

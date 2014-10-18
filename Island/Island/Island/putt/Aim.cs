@@ -14,7 +14,10 @@ namespace Island
     {
 
         public bool startAim;
+        
         private int speed;
+        private int hspeed;
+
         private bool direction;
         private bool hdirection;
 
@@ -25,7 +28,8 @@ namespace Island
 
             direction = false;
             hdirection = false;
-            speed = 2;
+            speed = 1;
+            hspeed = 1;
             startAim = false;
 
         }
@@ -55,8 +59,8 @@ namespace Island
                 visible = false;
             }
 
-            if (hdirection) health += 1;
-            else health -= 1;
+            if (hdirection) health += hspeed;
+            else health -= hspeed;
             if (health < 0)
             {
                 health = 1;

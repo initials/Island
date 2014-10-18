@@ -10,8 +10,8 @@ using System.Xml.Linq;
 
 
 /*
- * Welcome to Lee Carvallo's Putting Challenge.
- * I am Carvallo. Now, choose a club. 
+ * Welcome to Lee Carvallo's Putting Challenge. I am Carvallo.
+ * Now, choose a club. 
  * (Beep) You have chosen a three wood. May I suggest a putter? 
  * (Beep) Three wood. Now enter the force of your swing. I suggest feather touch. 
  * (Beep, beep, beep) You have entered "power drive". Now, push seven eight seven to swing.
@@ -45,6 +45,7 @@ namespace Island
 
         private Aim aim;
         private FlxBar power;
+        private int framesElapsed;
 
 
 
@@ -63,6 +64,8 @@ namespace Island
         override public void create()
         {
             base.create();
+
+            framesElapsed = 0;
 
             selected = 0;
             suggestionForClubNoted = false;
@@ -106,25 +109,180 @@ namespace Island
             add(power);
             power.visible = false;
 
+            log("Welcome to Lee Carvallo's Putting Challenge. I am Carvallo.");
+
+        }
+
+        public void log(string Log)
+        {
+            Console.WriteLine("Voice: " + Log);
+        }
+
+        public void resetSelections()
+        {
+            selected = 0;
+            framesElapsed = 0;
+        }
+
+        public void chooseClub()
+        {
+
+            if (framesElapsed == 3)
+            {
+                log("Now, choose a club. ");
+            }
+
+            ball.reset(FlxG.width / 2 - 7, FlxG.height - 30);
+            ball.visible = true;
+            ball.velocity.Y = 0;
+            ball.velocity.X = 0;
+            ball.play("size2");
+
+            text.text = clubs[selected].ToString();
+
+            if (FlxControl.ACTIONJUSTPRESSED && (selected == 0 || suggestionForClubNoted))
+            {
+                log(clubs[selected].ToString());
+
+                
+                state = GameState.ChooseForce;
+                resetSelections();
+                return;
+            }
+            else if (FlxControl.ACTIONJUSTPRESSED)
+            {
+                log("May I suggest a Putter");
+
+                suggestionForClubNoted = true;
+            }
+        }
+
+        public void chooseForce()
+        {
+            if (framesElapsed == 3)
+            {
+                log("Now enter the force of your swing.");
+            }
+
+            text.text = force[selected].ToString();
+
+            if (FlxControl.ACTIONJUSTPRESSED && (selected == 0 || suggestionForForceNoted))
+            {
+                log("You have entered " + force[selected].ToString() );
+
+                resetSelections();
+                state = GameState.Swing;
+                return;
+            }
+            else if (FlxControl.ACTIONJUSTPRESSED)
+            {
+                log("I suggest feather touch.");
+
+                suggestionForForceNoted = true;
+            }
+        }
+
+        public void chooseSwing()
+        {
+            if (framesElapsed == 3)
+            {
+                log("Now aim your shot.");
+            }
+
+            aim.startAim = true;
+
+            if (FlxControl.ACTIONJUSTPRESSED)
+            {
+                resetSelections();
+                aim.startAim = false;
+                state = GameState.Power;
+                return;
+            }
+        }
+
+        public void choosePower()
+        {
+            if (framesElapsed == 3)
+            {
+                log("Now enter the power of your swing.");
+            }
+
+            power.visible = true;
+            power.setValue(aim.health);
+
+           
+
+
+            if (FlxControl.ACTIONJUSTPRESSED)
+            {
+                float an = FlxU.getAngle(new Vector2(ball.x + (ball.width / 2), ball.y + (ball.height / 2)), new Vector2(aim.x + (aim.width / 2), aim.y + (aim.height / 2)));
+
+                float an2 = FlxU.getAngle(new Vector2(ball.x, ball.y), new Vector2(aim.x, aim.y));
+                float an3 = FlxU.getAngle(new Vector2(ball.x + (ball.width / 1), ball.y + (ball.height / 1)), new Vector2(aim.x + (aim.width / 1), aim.y + (aim.height / 1)));
+
+                Console.WriteLine("Angle to shoot is {0} , {1} , {2}", an, an2, an3);
+
+                ball.angle = an + 90;
+                ball.setVelocityFromAngle(aim.health * 2);
+                ball.angle = 0;
+                aim.startAim = false;
+
+                resetSelections();
+                state = GameState.BallInPlay;
+                return;
+            }
+        }
+
+        public void ballInPlay()
+        {
+            FlxU.overlap(ball, hole, ballInHole);
+
+            if (ball.velocity.Y == 0)
+            {
+                resetSelections();
+                state = GameState.PlayAgain;
+                return;
+            }
+        }
+
+        public void choosePlayAgain()
+        {
+            if (framesElapsed == 3)
+            {
+                log("Would you like to play again?");
+            }
+
+            text.text = playAgain[selected].ToString();
+
+            if (FlxControl.ACTIONJUSTPRESSED && selected == 0)
+            {
+                log("You have selected Yes");
+                resetSelections();
+                hole.reset(FlxU.random(20, FlxG.width - 20), hole.y);
+
+                state = GameState.ChooseClub;
+                return;
+            }
+            if (FlxControl.ACTIONJUSTPRESSED && selected == 1)
+            {
+                log("You have selected No");
+                resetSelections();
+                FlxG.state = new MenuState();
+                return;
+            }
         }
 
         override public void update()
         {
-
+            
             if (FlxG.keys.justPressed(Keys.B))
             {
                 FlxG.showBounds = !FlxG.showBounds;
-
             }
-
-
-
-            text.text = state.ToString();
 
             if (FlxControl.LEFTJUSTPRESSED)
             {
                 selected--;
-
                 if (selected < 0) selected = 0;
             }
             if (FlxControl.RIGHTJUSTPRESSED || FlxG.mouse.justPressed() )
@@ -132,124 +290,42 @@ namespace Island
                 selected++;
             }
 
+            //------------------------------------------------------------------
+
             if (elapsedInState > 1.0f)
             {
+                framesElapsed++;
+
                 /// Now, choose a club. 
                 if (state == GameState.ChooseClub)
                 {
-                    
-                    ball.reset(FlxG.width / 2 - 7, FlxG.height - 30);
-                    ball.visible = true;
-                    ball.velocity.Y = 0;
-                    ball.velocity.X = 0;
-                    ball.play("size2");
-
-
-                    text.text = clubs[selected].ToString();
-
-                    if (FlxControl.ACTIONJUSTPRESSED && (selected==0 || suggestionForClubNoted))
-                    {
-                        selected = 0;
-                        state = GameState.ChooseForce;
-                        return;
-                    }
-                    else if (FlxControl.ACTIONJUSTPRESSED)
-                    {
-                        lee.play("talk");
-
-                        text.text = "May I suggest a Putter";
-
-                        suggestionForClubNoted = true;
-                    }
-
+                    chooseClub();
                 }
                 /// Now enter the force of your swing. I suggest feather touch.  
-                if (state == GameState.ChooseForce)
+                else if (state == GameState.ChooseForce)
                 {
-                    text.text = force[selected].ToString();
-
-                    if (FlxControl.ACTIONJUSTPRESSED && (selected == 0 || suggestionForForceNoted))
-                    {
-                        selected = 0;
-                        state = GameState.Swing;
-                        return;
-                    }
-                    else if (FlxControl.ACTIONJUSTPRESSED)
-                    {
-                        text.text = "I suggest feather touch.";
-
-                        suggestionForForceNoted = true;
-                    }
+                    chooseForce();
                 }
                 /// Now, push seven eight seven to swing.
-                if (state == GameState.Swing)
+                else if (state == GameState.Swing)
                 {
-                    aim.startAim = true;
-
-                    if (FlxControl.ACTIONJUSTPRESSED)
-                    {
-                        aim.startAim = false;
-                        state = GameState.Power;
-                        return;
-                    }
+                    chooseSwing();
                 }
-                if (state == GameState.Power)
+                else if (state == GameState.Power)
                 {
-                    power.visible = true;
-                    power.setValue( aim.health );
-
-                    //Console.WriteLine("Health {0}", p);
-
-
-                    if (FlxControl.ACTIONJUSTPRESSED)
-                    {
-                        float an = FlxU.getAngle(new Vector2(ball.x, ball.y), new Vector2(aim.x, aim.y));
-                        Console.WriteLine("Angle to shoot is {0}", an);
-                        ball.angle = an + 90;
-                        ball.setVelocityFromAngle(aim.health * 2);
-                        ball.angle = 0;
-                        aim.startAim = false;
-                        state = GameState.BallInPlay;
-                        return;
-                    }
+                    choosePower();
                 }
-                if (state == GameState.BallInPlay)
+                else if (state == GameState.BallInPlay)
                 {
-                    FlxU.overlap(ball, hole, ballInHole);
-
-                    if (ball.velocity.Y == 0)
-                    {
-                        selected = 0;
-                        state = GameState.PlayAgain;
-                        return;
-                    }
+                    ballInPlay();
                 }
                 ///Would you like to play again? 
-                if (state == GameState.PlayAgain)
+                else if (state == GameState.PlayAgain)
                 {
-                    text.text = playAgain[selected].ToString();
-
-                    if (FlxControl.ACTIONJUSTPRESSED && selected==0)
-                    {
-                        /// You have selected Yes;
-                        
-                        hole.reset(FlxU.random(20, FlxG.width - 20), hole.y);
-                         
-                        state = GameState.ChooseClub;
-                        return;
-                    }
-                    if (FlxControl.ACTIONJUSTPRESSED && selected == 1)
-                    {
-                        /// You have selected No;
-                        FlxG.state = new MenuState();
-                        return;
-                    }
-
+                    choosePlayAgain();
                 }
 
             }
-
-
 
             base.update();
         }
