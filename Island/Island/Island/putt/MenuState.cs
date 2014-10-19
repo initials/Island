@@ -27,16 +27,16 @@ namespace Island
         override public void update()
         {
 
-            //if (elapsedInState > 1.0f)
-            //{
-            //    //menu.color = FlxColor.randomColor();
+            if (elapsedInState > 1.0f)
+            {
+                menu.color = FlxColor.randomColor();
 
-            //    if (elapsedInState > 2.0f)
-            //    {
-            //        elapsedInState = 0;
-            //    }
+                if (elapsedInState > 1.25f)
+                {
+                    elapsedInState = 0.16f;
+                }
 
-            //}
+            }
 
             if (FlxControl.CANCELJUSTPRESSED)
             {

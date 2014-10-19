@@ -12,6 +12,7 @@ namespace Island
 {
     class Lee : FlxSprite
     {
+        public string club;
 
         public Lee(int xPos, int yPos)
             : base(xPos, yPos)
@@ -21,6 +22,8 @@ namespace Island
 
             boundingBoxOverride = false;
             debugName = "";
+            club = "";
+
 
         }
 

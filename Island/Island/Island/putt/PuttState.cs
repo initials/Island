@@ -14,9 +14,12 @@ using System.Xml.Linq;
  * Welcome to Lee Carvallo's Putting Challenge. I am Carvallo.
  * Now, choose a club. 
  * (Beep) You have chosen a three wood. May I suggest a putter? 
- * (Beep) Three wood. Now enter the force of your swing. I suggest feather touch. 
- * (Beep, beep, beep) You have entered "power drive". Now, push seven eight seven to swing.
- * (Beep beep beep) "Ball is in...parking lot. Would you like to play again? 
+ * (Beep) Three wood. 
+ * Now enter the force of your swing. I suggest feather touch. 
+ * (Beep, beep, beep) You have entered "power drive". 
+ * Now, push seven eight seven to swing.
+ * (Beep beep beep) "Ball is in...parking lot. 
+ * Would you like to play again? 
  * (Beep) You have selected, No
  * 
  
@@ -75,7 +78,7 @@ namespace Island
             suggestionForClubNoted = false;
             suggestionForForceNoted = false;
 
-            clubs = new List<string> { "Putter", "1 Wood", "2 Wood", "3 Wood", "4 Wood", "5 Wood", 
+            clubs = new List<string> { "Putter", "1 Wood", "3 Wood", "5 Wood", 
                 "1 Iron", "2 Iron", "3 Iron", "4 Iron", "5 Iron", "6 Iron", "7 Iron", "8 Iron", "9 Iron", 
                 "Sand Wedge" };
 
@@ -144,6 +147,7 @@ namespace Island
         }
         public void chooseClub()
         {
+            if (selected > clubs.Count - 1) selected = 0;
             lee.debugName = "";
 
             if (framesElapsed == 3)
@@ -164,6 +168,32 @@ namespace Island
 
             if (FlxControl.ACTIONJUSTPRESSED && (selected == 0 || suggestionForClubNoted))
             {
+                if (selected == 0) {
+                    playSound("putter");
+                    lee.club="putter";
+                }
+                else if (selected == 1) {
+                    playSound("onewood"); 
+                    lee.club="wood";
+                }
+                else if (selected == 2) {
+                    playSound("threewood");
+                    lee.club="wood";
+                }
+                else if (selected == 3) {
+                    playSound("fivewood");
+                    lee.club="wood";
+                }
+                else if (selected == 4) {
+                    playSound("oneiron");
+                    lee.club="iron";
+                }
+                else if (selected == 5)
+                {
+                    playSound("twoiron");
+                    lee.club = "iron";
+                }
+
                 log(clubs[selected].ToString());
                 
                 state = GameState.ChooseForce;
@@ -173,7 +203,8 @@ namespace Island
             else if (FlxControl.ACTIONJUSTPRESSED)
             {
                 log("May I suggest a Putter");
-                FlxG.play("putt/sfx/youhavechosen");
+
+                playSound("mayisuggestaputter");
 
                 suggestionForClubNoted = true;
             }
@@ -184,6 +215,7 @@ namespace Island
             if (framesElapsed == 3)
             {
                 log("Now enter the force of your swing.");
+                playSound("nowenter");
             }
 
             text.text = force[selected].ToString();
@@ -192,6 +224,13 @@ namespace Island
             {
                 log("You have entered " + force[selected].ToString() );
 
+                if (selected == 0) playSound("feathertouch");
+                else if (selected == 1) playSound("powerdrive");
+                else if (selected == 2) playSound("chipshot");
+                else if (selected == 3) playSound("pitch");
+                else if (selected == 4) playSound("fade");
+                else if (selected == 5) playSound("draw");
+
                 resetSelections();
                 state = GameState.Swing;
                 return;
@@ -199,6 +238,7 @@ namespace Island
             else if (FlxControl.ACTIONJUSTPRESSED)
             {
                 log("I suggest feather touch.");
+                playSound("isuggestfeathertouch");
 
                 suggestionForForceNoted = true;
             }
@@ -224,9 +264,13 @@ namespace Island
 
         public void choosePower()
         {
+
+            
+
             if (framesElapsed == 3)
             {
                 log("Now enter the power of your swing.");
+                
             }
 
             power.visible = true;
@@ -287,12 +331,6 @@ namespace Island
                 log("You have selected Yes");
                 playSound("youhaveselectedyes");
 
-                //resetSelections();
-                hole.reset(FlxU.random(20, FlxG.width - 20), hole.y);
-
-                suggestionForClubNoted = false;
-                suggestionForForceNoted = false;
-
                 state = GameState.Reset;
                 return;
             }
@@ -300,7 +338,7 @@ namespace Island
             {
                 playSound("youhaveselectedno");
                 log("You have selected No");
-                //resetSelections();
+                
                 state = GameState.Reset;
                 return;
             }
@@ -370,8 +408,12 @@ namespace Island
 
             if (sound.getState() == SoundState.Stopped)
             {
-                lee.play("idle");
+                if (lee.club == "")
+                    lee.play("idle");
+                else
+                    lee.play( "idle_" + lee.club );
 
+                //lee.play("idle");
                 if (FlxControl.LEFTJUSTPRESSED)
                 {
                     FlxG.play("putt/sfx/blip");

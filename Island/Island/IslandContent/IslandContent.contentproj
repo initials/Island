@@ -281,7 +281,22 @@
     <Compile Include="putt\sfx\youhaveselectedyes.mp3">
       <Name>youhaveselectedyes</Name>
       <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="putt\sfx\isuggest.mp3">
+      <Name>isuggest</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="putt\sfx\isuggestfeathertouch.mp3">
+      <Name>isuggestfeathertouch</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="putt\sfx\mayisuggestaputter.mp3">
+      <Name>mayisuggestaputter</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
