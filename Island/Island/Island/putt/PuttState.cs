@@ -267,7 +267,7 @@ namespace Island
         public void choosePower()
         {
 
-            
+
 
             if (framesElapsed == 3)
             {
@@ -392,7 +392,7 @@ namespace Island
             }
 
             //------------------------------------------------------------------
-            //Console.WriteLine(sound.getName());
+            //Console.WriteLine(sound.getName());  
 
             if (state == GameState.Introduction)
             {
@@ -416,31 +416,26 @@ namespace Island
                 if (FlxControl.LEFTJUSTPRESSED)
                 {
                     FlxG.play("putt/sfx/blip");
-
                     selected--;
                     if (selected < 0) selected = 0;
                 }
                 if (FlxControl.RIGHTJUSTPRESSED || FlxG.mouse.justPressed())
                 {
                     FlxG.play("putt/sfx/blip");
-
                     selected++;
                 }
 
 
                 framesElapsed++;
 
-                /// Now, choose a club. 
                 if (state == GameState.ChooseClub)
                 {
                     chooseClub();
                 }
-                /// Now enter the force of your swing. I suggest feather touch.  
                 else if (state == GameState.ChooseForce)
                 {
                     chooseForce();
                 }
-                /// Now, push seven eight seven to swing.
                 else if (state == GameState.Swing)
                 {
                     chooseSwing();
@@ -453,7 +448,6 @@ namespace Island
                 {
                     ballInPlay();
                 }
-                ///Would you like to play again? 
                 else if (state == GameState.PlayAgain)
                 {
                     choosePlayAgain();
