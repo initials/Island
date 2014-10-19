@@ -139,6 +139,7 @@ namespace Island
         {
             selected = 0;
             framesElapsed = 0;
+            lee.club = "";
         }
 
         public void everyAction()
@@ -149,6 +150,7 @@ namespace Island
         {
             if (selected > clubs.Count - 1) selected = 0;
             lee.debugName = "";
+            
 
             if (framesElapsed == 3)
             {
@@ -408,12 +410,9 @@ namespace Island
 
             if (sound.getState() == SoundState.Stopped)
             {
-                if (lee.club == "")
-                    lee.play("idle");
-                else
-                    lee.play( "idle_" + lee.club );
 
-                //lee.play("idle");
+                lee.play("idle");
+                
                 if (FlxControl.LEFTJUSTPRESSED)
                 {
                     FlxG.play("putt/sfx/blip");

@@ -30,6 +30,12 @@ namespace Island
         override public void update()
         {
 
+            //if (club == "")
+            //    play("idle");
+            //else
+            //    play("idle_" + club);
+
+
 
             base.update();
 
