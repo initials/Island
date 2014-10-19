@@ -17,10 +17,10 @@ namespace Island
             : base(xPos, yPos)
         {
             loadGraphic(FlxG.Content.Load<Texture2D>("putt/lee_150x150"), true, false, 150, 150);
-            loadAnimationsFromGraphicsGaleCSV("content/putt/lee_150x150.csv", null, null, true);
+            loadAnimationsFromGraphicsGaleCSV("content/putt/lee_150x150.csv", null, new List<string> {"introduction_talk"}, true);
 
             boundingBoxOverride = false;
-
+            debugName = "";
 
         }
 

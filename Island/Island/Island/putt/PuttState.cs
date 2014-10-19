@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 using org.flixel;
 
 using System.Linq;
@@ -47,19 +48,22 @@ namespace Island
         private FlxBar power;
         private int framesElapsed;
 
+        private FlxSound sound;
 
 
         public enum GameState
         {
+            Introduction = -1,
             ChooseClub = 0,
             ChooseForce = 1,
             Swing = 2,
             Power = 3,
             BallInPlay = 4,
-            PlayAgain = 5
+            PlayAgain = 5,
+            Reset = 6
         }
 
-        public GameState state = GameState.ChooseClub;
+        public GameState state = GameState.Introduction;
 
         override public void create()
         {
@@ -89,7 +93,7 @@ namespace Island
 
             text = new FlxText(2, 2, 200);
             text.setFormat(null, 1, Color.White, FlxJustification.Left, Color.Black);
-            text.text = state.ToString();
+            //text.text = state.ToString();
             add(text);
 
             ball = new Ball(FlxG.width/2, FlxG.height - 10);
@@ -110,6 +114,16 @@ namespace Island
             power.visible = false;
 
             log("Welcome to Lee Carvallo's Putting Challenge. I am Carvallo.");
+            //FlxG.play("putt/sfx/welcome", 1.0f, false);
+
+            sound = new FlxSound();
+            sound.loadEmbedded("putt/sfx/welcome", false);
+            sound.play();
+            
+
+            //s = FlxG.Content.Load<SoundEffect>("putt/sfx/welcome");
+
+            //s.Play();
 
         }
 
@@ -124,12 +138,20 @@ namespace Island
             framesElapsed = 0;
         }
 
+        public void everyAction()
+        {
+            FlxG.play("putt/sfx/blip");
+        }
         public void chooseClub()
         {
+            lee.debugName = "";
 
             if (framesElapsed == 3)
             {
                 log("Now, choose a club. ");
+                
+                playSound("chooseaclub");
+
             }
 
             ball.reset(FlxG.width / 2 - 7, FlxG.height - 30);
@@ -143,7 +165,6 @@ namespace Island
             if (FlxControl.ACTIONJUSTPRESSED && (selected == 0 || suggestionForClubNoted))
             {
                 log(clubs[selected].ToString());
-
                 
                 state = GameState.ChooseForce;
                 resetSelections();
@@ -152,6 +173,7 @@ namespace Island
             else if (FlxControl.ACTIONJUSTPRESSED)
             {
                 log("May I suggest a Putter");
+                FlxG.play("putt/sfx/youhavechosen");
 
                 suggestionForClubNoted = true;
             }
@@ -237,6 +259,8 @@ namespace Island
 
         public void ballInPlay()
         {
+            lee.play("swing_wood");
+
             FlxU.overlap(ball, hole, ballInHole);
 
             if (ball.velocity.Y == 0)
@@ -252,6 +276,8 @@ namespace Island
             if (framesElapsed == 3)
             {
                 log("Would you like to play again?");
+                playSound("wouldyouliketoplayagain");
+
             }
 
             text.text = playAgain[selected].ToString();
@@ -259,19 +285,57 @@ namespace Island
             if (FlxControl.ACTIONJUSTPRESSED && selected == 0)
             {
                 log("You have selected Yes");
-                resetSelections();
+                playSound("youhaveselectedyes");
+
+                //resetSelections();
                 hole.reset(FlxU.random(20, FlxG.width - 20), hole.y);
 
-                state = GameState.ChooseClub;
+                suggestionForClubNoted = false;
+                suggestionForForceNoted = false;
+
+                state = GameState.Reset;
                 return;
             }
             if (FlxControl.ACTIONJUSTPRESSED && selected == 1)
             {
+                playSound("youhaveselectedno");
                 log("You have selected No");
-                resetSelections();
-                FlxG.state = new MenuState();
+                //resetSelections();
+                state = GameState.Reset;
                 return;
             }
+        }
+
+        public void chooseReset()
+        {
+
+            if (sound.getState() == SoundState.Stopped)
+            {
+                if (selected == 0)
+                {
+                    resetSelections();
+                    hole.reset(FlxU.random(20, FlxG.width - 20), hole.y);
+
+                    suggestionForClubNoted = false;
+                    suggestionForForceNoted = false;
+
+                    state = GameState.ChooseClub;
+                    return;
+                }
+                else if (selected == 1)
+                {
+                    resetSelections();
+                    FlxG.state = new MenuState();
+                    return;
+
+                }
+            }
+
+        }
+        public void playSound(string Sound)
+        {
+            sound.loadEmbedded("putt/sfx/" + Sound, false);
+            sound.play();
         }
 
         override public void update()
@@ -282,20 +346,47 @@ namespace Island
                 FlxG.showBounds = !FlxG.showBounds;
             }
 
-            if (FlxControl.LEFTJUSTPRESSED)
+            if (FlxControl.ACTIONJUSTPRESSED)
             {
-                selected--;
-                if (selected < 0) selected = 0;
-            }
-            if (FlxControl.RIGHTJUSTPRESSED || FlxG.mouse.justPressed() )
-            {
-                selected++;
+                everyAction();
             }
 
             //------------------------------------------------------------------
+            //Console.WriteLine(sound.getName());
 
-            if (elapsedInState > 1.0f)
+            if (state == GameState.Introduction)
             {
+                if (sound.getState() == SoundState.Stopped)
+                {
+                    lee.debugName = "introduction";
+
+                    playSound("iamcarvallo");
+
+                    state = GameState.ChooseClub;
+
+                    return;
+                }
+            }
+
+            if (sound.getState() == SoundState.Stopped)
+            {
+                lee.play("idle");
+
+                if (FlxControl.LEFTJUSTPRESSED)
+                {
+                    FlxG.play("putt/sfx/blip");
+
+                    selected--;
+                    if (selected < 0) selected = 0;
+                }
+                if (FlxControl.RIGHTJUSTPRESSED || FlxG.mouse.justPressed())
+                {
+                    FlxG.play("putt/sfx/blip");
+
+                    selected++;
+                }
+
+
                 framesElapsed++;
 
                 /// Now, choose a club. 
@@ -326,6 +417,18 @@ namespace Island
                 {
                     choosePlayAgain();
                 }
+                else if (state == GameState.Reset)
+                {
+                    chooseReset();
+                }
+
+            }
+            else
+            {
+                if (lee.debugName == "")
+                    lee.play("talk");
+                else
+                    lee.play(lee.debugName + "_talk");
 
             }
 
@@ -334,9 +437,13 @@ namespace Island
 
         protected bool ballInHole(object Sender, FlxSpriteCollisionEvent e)
         {
+            if (ball.visible)
+            {
+                FlxG.play("putt/sfx/ballinhole");
+            }
             state = GameState.PlayAgain;
             ball.visible = false;
-
+            resetSelections();
             return true;
         }
     }
