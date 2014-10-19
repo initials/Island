@@ -227,6 +227,8 @@ namespace Island
                 ball.angle = 0;
                 aim.startAim = false;
 
+                FlxG.play("putt/sfx/putt", 1.0f, false);
+
                 resetSelections();
                 state = GameState.BallInPlay;
                 return;
