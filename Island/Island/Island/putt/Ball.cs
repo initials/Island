@@ -54,9 +54,28 @@ namespace Island
 
 
             scale = (float)Convert.ToDouble((y / FlxG.height));
-            if (scale > 0.75f) play("size2");
-            else if (scale > 0.5f) play("size3");
-            else if (scale > 0.4f) play("size4");
+            if (scale > 0.75f)
+            {
+                play("size2");
+                width = 4;
+                height = 2;
+                setOffset(2, 6);
+            }
+
+            else if (scale > 0.5f) { 
+                play("size3");
+                width = 4;
+                height = 4;
+                setOffset(2, 4);
+            }
+            else if (scale > 0.4f)
+            {
+                play("size4");
+                width = 2;
+                height = 2;
+                setOffset(3, 3);
+
+            }
             else play("size5");
 
 

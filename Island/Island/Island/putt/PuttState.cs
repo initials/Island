@@ -94,6 +94,9 @@ namespace Island
             suggestionForForceStatus = 0;
             selectedClub = 0;
 
+            Globals.ballInHole = false;
+
+
             clubs = new List<string> { "Putter", "1 Wood", "3 Wood", "5 Wood", 
                 "1 Iron", "2 Iron", "3 Iron", "4 Iron", "5 Iron", "6 Iron", "7 Iron", "8 Iron", "9 Iron", 
                 "Sand Wedge" };
