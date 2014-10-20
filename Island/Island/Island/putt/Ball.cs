@@ -24,7 +24,7 @@ namespace Island
             play("size2");
 
 
-            setDrags(10, 10);
+            setDrags(3, 10);
             width = 4;
             height = 2;
             setOffset(2, 6);
@@ -83,17 +83,17 @@ namespace Island
 
             if (y < FlxG.height / 2)
             {
-                setDrags(44, 44);
+                setDrags(22, 44);
             }
             else if (y < (FlxG.height / 2) - 40)
             {
-                setDrags(144, 144);
+                setDrags(50, 144);
                 
             }
 
             else
             {
-                setDrags(10, 10);
+                setDrags(3, 10);
             }
 
             scale = 1;
