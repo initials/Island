@@ -41,6 +41,8 @@ namespace Island
         private int suggestionForForceStatus;
         private int ballEndedStatus;
         private int selectedPower;
+        private int selectedClub;
+
 
         private Ball ball;
         private Hole hole;
@@ -59,6 +61,8 @@ namespace Island
         private FlxGroup rollIndicators;
 
         private FlxTilemap rollTiles;
+
+        private ActionButton actionButton;
 
         public enum GameState
         {
@@ -88,6 +92,7 @@ namespace Island
             suggestionForForceNoted = false;
             suggestionForClubStatus = 0;
             suggestionForForceStatus = 0;
+            selectedClub = 0;
 
             clubs = new List<string> { "Putter", "1 Wood", "3 Wood", "5 Wood", 
                 "1 Iron", "2 Iron", "3 Iron", "4 Iron", "5 Iron", "6 Iron", "7 Iron", "8 Iron", "9 Iron", 
@@ -109,9 +114,7 @@ namespace Island
             text.setFormat(FlxG.Content.Load<SpriteFont>("initials/SMALL_PIXEL"), 1, Color.White, FlxJustification.Left, Color.Black);
             //text.text = state.ToString();
             add(text);
-
-
-
+            
             ball = new Ball(FlxG.width / 2 - 8, FlxG.height - 24);
             add(ball);
 
@@ -133,7 +136,6 @@ namespace Island
             power.visible = false;
 
             log("Welcome to Lee Carvallo's Putting Challenge. I am Carvallo.");
-            //FlxG.play("putt/sfx/welcome", 1.0f, false);
 
             sound = new FlxSound();
             sound.loadEmbedded("putt/sfx/welcome", false);
@@ -143,14 +145,11 @@ namespace Island
             {
                 FlxG.mouse.show();
 
-                ActionButton robot = new ActionButton(FlxG.width - 40, FlxG.height - 40);
-                add(robot);
+                actionButton = new ActionButton(FlxG.width - 40, FlxG.height - 40);
+                add(actionButton);
             }
             
             add(rollIndicators);
-
-            //s = FlxG.Content.Load<SoundEffect>("putt/sfx/welcome");
-            //s.Play();
 
         }
 
@@ -163,6 +162,7 @@ namespace Island
         {
             selected = 0;
             framesElapsed = 0;
+            actionButton.visible = false;
         }
 
         public void everyAction()
@@ -204,12 +204,6 @@ namespace Island
         /// </summary>
         public void chooseIntroduction()
         {
-            //Console.WriteLine("Introduction --");
-
-            //if (framesElapsed == 2)
-            //{
-            //    loadOgmo();
-            //}
             if (Globals.hole == 1)
             {
                 if (lee.debugName == "introduction")
@@ -332,6 +326,7 @@ namespace Island
 
             if (Globals.ACTIONJUSTPRESSED && (selected == 0 || suggestionForClubNoted))
             {
+                selectedClub = selected;
                 #region PlaySounds
                 playClubSound();
                 #endregion
@@ -630,30 +625,24 @@ namespace Island
 
             if (sound.getState() == SoundState.Stopped)
             {
+                if (Globals.ballInHole)
+                {
+                    Globals.scoreCard.Add(1);
+                }
+                else
+                {
+                    Globals.scoreCard.Add(0);
+                }
                 if (Globals.hole >= 19)
                 {
                     // Go to score card state;
                     FlxG.state = new ScoreCardState();
                     return;
-
                 }
                 if (selected == 0)
                 {
-
-                    if (Globals.ballInHole)
-                    {
-                        Globals.scoreCard.Add(1);
-                    }
-                    else
-                    {
-                        Globals.scoreCard.Add(0);
-                    }
-
                     resetSelections();
-                    //hole.reset(FlxU.random(20, FlxG.width - 20), hole.y);
-
                     
-
                     suggestionForClubNoted = false;
                     suggestionForForceNoted = false;
                     suggestionForClubStatus = 0;

@@ -39,28 +39,28 @@ namespace Island
         override public void update()
         {
 
-            if (Globals.hole > 3)
+            if (Globals.hole < 3)
             {
                 speed = 1;
             }
-            else if (Globals.hole > 12)
+            else if (Globals.hole < 12)
             {
                 speed = 2;
             }
-            else if (Globals.hole > 18)
+            else if (Globals.hole < 18)
             {
                 speed = 3;
             }
 
-            if (Globals.hole > 6)
+            if (Globals.hole < 6)
             {
                 hspeed = 1;
             }
-            else if (Globals.hole > 14)
+            else if (Globals.hole < 14)
             {
                 hspeed = 2;
             }
-            else if (Globals.hole > 18)
+            else if (Globals.hole < 18)
             {
                 hspeed = 3;
             }

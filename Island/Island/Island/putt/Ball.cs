@@ -12,6 +12,8 @@ namespace Island
 {
     class Ball : FlxSprite
     {
+        public float heightOffGround;
+        private FlxSprite shadow;
 
         public Ball(int xPos, int yPos)
             : base(xPos, yPos)
@@ -26,11 +28,23 @@ namespace Island
             height = 4;
             setOffset(2, 4);
 
+            heightOffGround = 0;
+
+            shadow = new FlxSprite(xPos, yPos);
+            shadow.loadGraphic("putt/ball_8x8", false, false, 8, 8);
+            shadow.color = Color.Black;
+
 
         }
 
         override public void update()
         {
+            //shadow
+
+            shadow.at(this);
+            shadow.y -= heightOffGround;
+
+
             scale = (float)Convert.ToDouble((y / FlxG.height));
             if (scale > 0.75f) play("size2");
             else if (scale > 0.5f) play("size3");
