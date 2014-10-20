@@ -162,12 +162,13 @@ namespace Island
         {
             selected = 0;
             framesElapsed = 0;
-            actionButton.visible = false;
+            //actionButton.visible = true;
         }
 
         public void everyAction()
         {
             FlxG.play("putt/sfx/blip");
+            //actionButton.visible = false;
         }
 
         public void loadOgmo()
@@ -487,6 +488,11 @@ namespace Island
                 }
 
                 int initialPower = 5;
+
+                if (selectedClub != 0)
+                {
+                    ball.rise = true;
+                }
 
                 ball.setVelocityFromAngle(initialPower + (aim.health * multiplier));
                 ball.maxVelocity.X = initialPower + (aim.health * multiplier);

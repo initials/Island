@@ -14,6 +14,7 @@ namespace Island
     {
         public float heightOffGround;
         private FlxSprite shadow;
+        public bool rise;
 
         public Ball(int xPos, int yPos)
             : base(xPos, yPos)
@@ -33,7 +34,8 @@ namespace Island
             shadow = new FlxSprite(xPos, yPos);
             shadow.loadGraphic("putt/ball_8x8", false, false, 8, 8);
             shadow.color = Color.Black;
-
+            shadow.alpha = 0.1f;
+            rise = false;
 
         }
 
@@ -41,8 +43,14 @@ namespace Island
         {
             //shadow
 
+            if (rise)
+            {
+                velocity.Y -= 30;
+                heightOffGround += 0.2f;
+            }
+
             shadow.at(this);
-            shadow.y -= heightOffGround;
+            shadow.y += heightOffGround;
 
 
             scale = (float)Convert.ToDouble((y / FlxG.height));
@@ -72,11 +80,22 @@ namespace Island
             scale = 1;
 
 
-
+            if (y < 0)
+            {
+                setDrags(50000, 50000);
+            }
 
             base.update();
 
         }
+
+        public override void render(SpriteBatch spriteBatch)
+        {
+            if (rise && y > FlxG.height/2)
+                shadow.render(spriteBatch);
+            base.render(spriteBatch);
+        }
+
         public void adjustSpeedForTile(int Tile)
         {
 
