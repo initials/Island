@@ -13,6 +13,7 @@ namespace Island
     public class MenuState : FlxState
     {
         private FlxSprite menu;
+        private bool toPlay;
 
         override public void create()
         {
@@ -22,11 +23,14 @@ namespace Island
             menu.loadGraphic("putt/menu", true, false, 256, 224);
             add(menu);
 
+            toPlay = false;
+
+
         }
 
         override public void update()
         {
-
+            
             if (elapsedInState > 1.0f)
             {
                 menu.color = FlxColor.randomColor();
@@ -34,6 +38,14 @@ namespace Island
                 if (elapsedInState > 1.25f)
                 {
                     elapsedInState = 0.16f;
+                    if (toPlay == false)
+                    {
+                        FlxG.playMp3("putt/music/GreenlandIsAlive", 1.0f);
+                        toPlay = true;
+                        
+                    }
+                    menu.color = Color.White;
+
                 }
 
             }
@@ -43,10 +55,15 @@ namespace Island
                 FlxG.state = new LoadRomState();
             }
 
-            if (FlxControl.ACTIONJUSTPRESSED)
+            if (FlxControl.ACTIONJUSTPRESSED || FlxG.mouse.pressed() )
             {
                 if (elapsedInState > 0.15f)
+                {
+                    FlxG.stopMp3();
+                    Globals.canSkip = false;
+                    Globals.hole = 1;
                     FlxG.state = new PuttState();
+                }
             }
 
             base.update();

@@ -32,9 +32,13 @@ namespace Island
         override public void update()
         {
             scale = (float)Convert.ToDouble((y / FlxG.height));
-            if (scale < 0.75f) play("size3");
-            else if (scale < 0.7f) play("size4");
+            if (scale > 0.75f) play("size2");
+            else if (scale > 0.5f) play("size3");
+            else if (scale > 0.4f) play("size4");
+            else play("size5");
 
+
+            //Console.WriteLine(scale);
 
             if (y < FlxG.height / 2)
             {
@@ -43,6 +47,7 @@ namespace Island
             else if (y < (FlxG.height / 2) - 40)
             {
                 setDrags(144, 144);
+                
             }
 
             else
@@ -58,7 +63,62 @@ namespace Island
             base.update();
 
         }
+        public void adjustSpeedForTile(int Tile)
+        {
 
+            int power = (Tile / 10) + 1;
+            int direction = Tile % 10;
+            float multiplier = 1;
+            Console.WriteLine("Adjusting speed for Tile Power {0} Direction l,u,r,d: {1}", power, direction);
+            
+            // Left
+            if (direction == 0)
+            {
+                velocity.X -= (power * multiplier);
+            }
+            // Up
+            if (direction == 2)
+            {
+                velocity.Y -= (power * multiplier);
+            }
+            // Right
+            if (direction == 4)
+            {
+                velocity.X += (power * multiplier);
+            }
+            // Down
+            if (direction == 6)
+            {
+                velocity.Y += (power * multiplier);
+            }
+            // Left/Up
+            if (direction == 1)
+            {
+                velocity.X -= (power * (multiplier/3));
+                velocity.Y -= (power * (multiplier/3));
+            }
+            // Up/Right
+            if (direction == 3)
+            {
+                velocity.Y -= (power * (multiplier/3));
+                velocity.X += (power * (multiplier/3));
+            }
+            // Right/Down
+            if (direction == 5)
+            {
+                velocity.X += (power * (multiplier/3));
+                velocity.Y += (power * (multiplier/3));
+            }
+            // Down/Left
+            if (direction == 7)
+            {
+                velocity.Y += (power * (multiplier/3));
+                velocity.X -= (power * (multiplier/3));
+            }
+
+
+
+        }
 
     }
 }

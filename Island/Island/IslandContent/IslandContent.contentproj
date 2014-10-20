@@ -104,6 +104,16 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="putt\golfball.png">
+      <Name>golfball</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="putt\golfball_50x50.png">
+      <Name>golfball_50x50</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Content Include="putt\lee_150x150.csv">
       <Name>lee_150x150</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -295,6 +305,31 @@
     </Compile>
     <Compile Include="putt\sfx\mayisuggestaputter.mp3">
       <Name>mayisuggestaputter</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="putt\sfx\ballisin.mp3">
+      <Name>ballisin</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="putt\music\GreenlandIsAlive.mp3">
+      <Name>GreenlandIsAlive</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="putt\sfx\hole2.mp3">
+      <Name>hole2</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="putt\rollIndicators.png">
+      <Name>rollIndicators</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="putt\sfx\hole3.mp3">
+      <Name>hole3</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>

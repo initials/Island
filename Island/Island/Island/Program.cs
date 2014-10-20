@@ -35,6 +35,8 @@ namespace Loader_Four
 
             initGame(w, h, new Island.MenuState(), new Color(15, 15, 15), false, new Color(5, 5, 5));
 
+            Island.Globals.platform = "touch";
+
             FlxG.debug = false;
 
 #if DEBUG

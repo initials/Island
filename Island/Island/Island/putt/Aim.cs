@@ -14,7 +14,8 @@ namespace Island
     {
 
         public bool startAim;
-        
+        public bool startHealth;
+
         private int speed;
         private int hspeed;
 
@@ -31,11 +32,39 @@ namespace Island
             speed = 1;
             hspeed = 1;
             startAim = false;
+            startHealth = false;
 
         }
 
         override public void update()
         {
+
+            if (Globals.hole > 3)
+            {
+                speed = 1;
+            }
+            else if (Globals.hole > 12)
+            {
+                speed = 2;
+            }
+            else if (Globals.hole > 18)
+            {
+                speed = 3;
+            }
+
+            if (Globals.hole > 6)
+            {
+                hspeed = 1;
+            }
+            else if (Globals.hole > 14)
+            {
+                hspeed = 2;
+            }
+            else if (Globals.hole > 18)
+            {
+                hspeed = 3;
+            }
+
             if (startAim)
             {
                 visible = true;
@@ -44,11 +73,16 @@ namespace Island
 
                 if (x < 0)
                 {
+                    FlxG.play("putt/sfx/select");
+
                     x = 1;
                     direction = !direction;
                 }
                 if (x > FlxG.width)
                 {
+                    FlxG.play("putt/sfx/select");
+
+
                     x = FlxG.width - 2;
                     direction = !direction;
                 }
@@ -59,17 +93,22 @@ namespace Island
                 visible = false;
             }
 
-            if (hdirection) health += hspeed;
-            else health -= hspeed;
-            if (health < 0)
+            if (startHealth)
             {
-                health = 1;
-                hdirection = !hdirection;
-            }
-            if (health > 50 )
-            {
-                health = 50 - 1;
-                hdirection = !hdirection;
+                if (hdirection) health += hspeed;
+                else health -= hspeed;
+                if (health < 0)
+                {
+                    FlxG.play("putt/sfx/select");
+                    health = 1;
+                    hdirection = !hdirection;
+                }
+                if (health > 50)
+                {
+                    FlxG.play("putt/sfx/select");
+                    health = 50 - 1;
+                    hdirection = !hdirection;
+                }
             }
 
 

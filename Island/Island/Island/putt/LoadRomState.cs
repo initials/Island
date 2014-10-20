@@ -15,6 +15,8 @@ namespace Island
 
         public List<string> games;
         public FlxText gamesDisplay;
+        public FlxText status;
+
         public int selection;
 
         override public void create()
@@ -44,11 +46,14 @@ namespace Island
             //games.Add("");
 
 
-            gamesDisplay = new FlxText(2, 2, 200);
-            gamesDisplay.setFormat(null, 1, Color.White, FlxJustification.Left, Color.Black); //FlxG.Content.Load<SpriteFont> ("")
+            gamesDisplay = new FlxText(2, 12, 200);
+            //text1.setFormat(FlxG.Content.Load<SpriteFont>("Lemonade/SMALL_PIXEL"), 3, new Color(237, 0, 142), FlxJustification.Center, Color.Black);
+            gamesDisplay.setFormat(FlxG.Content.Load<SpriteFont>("initials/SMALL_PIXEL"), 1, Color.White, FlxJustification.Left, Color.Black); //FlxG.Content.Load<SpriteFont> ("")
             add(gamesDisplay);
 
-
+            status = new FlxText(2, 2, 200);
+            status.setFormat(FlxG.Content.Load<SpriteFont>("initials/SMALL_PIXEL"), 1, Color.Red, FlxJustification.Left, Color.Black); //FlxG.Content.Load<SpriteFont> ("")
+            add(status);
 
         }
 
@@ -72,11 +77,12 @@ namespace Island
                 if (selection == 0)
                 {
                     FlxG.state = new MenuState();
+                    status.text = "CHECKSUM GOOD! - LOADING ROM.";
                 }
                 else
                 {
                     Console.WriteLine("Cannot load ROM");
-
+                    status.text = "INVALID CHECKSUM - CANNOT LOAD ROM";
                 }
             }
 
