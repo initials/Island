@@ -540,9 +540,7 @@ namespace Island
 
                 if (ballEndedStatus == 1)
                 {
-
                     float dist = FlxU.getDistance(new Vector2(ball.x, ball.y), new Vector2(hole.x, hole.y) );
-
                     Console.WriteLine("-- Ball.x/y {0} {1} -- Distance. {2}", ball.x, ball.y, dist);
                     
                     if (Globals.ballInHole==true)
