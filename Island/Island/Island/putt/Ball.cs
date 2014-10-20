@@ -26,8 +26,8 @@ namespace Island
 
             setDrags(10, 10);
             width = 4;
-            height = 4;
-            setOffset(2, 4);
+            height = 2;
+            setOffset(2, 6);
 
             heightOffGround = 0;
 
