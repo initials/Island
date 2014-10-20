@@ -22,19 +22,16 @@ namespace Island
 
         override public void update()
         {
-
-            //if (FlxU.overlap(this, FlxG.mouse., overlapCursor))
-            //{
-
-            //}
-            //else
-            //{
-            //    //scale = 1;
-            //}
+            if (scale > 1.0f)
+            {
+                scale -= 0.05f;
+            }
+            else
+            {
+                scale = 1;
+            }
 
             base.update();
-
-
         }
 
         protected bool overlapCursor(object Sender, FlxSpriteCollisionEvent e)

@@ -63,6 +63,7 @@ namespace Island
         private FlxTilemap rollTiles;
 
         private ActionButton actionButton;
+        private CarPark carPark;
 
         public enum GameState
         {
@@ -101,7 +102,7 @@ namespace Island
                 "1 Iron", "2 Iron", "3 Iron", "4 Iron", "5 Iron", "6 Iron", "7 Iron", "8 Iron", "9 Iron", 
                 "Sand Wedge" };
 
-            force = new List<string> { "Feather Touch", "Medium Putt", "Firm Putt", "Power Drive", "Chip Shot", 
+            force = new List<string> { "Feather Touch", "Firm Putt", "Power Drive", "Chip Shot", 
                 "Pitch", "Fade", "Draw", 
                 "Lay-up", "Knock Down", "Flop" };
 
@@ -144,15 +145,26 @@ namespace Island
             sound.loadEmbedded("putt/sfx/welcome", false);
             sound.play();
 
+            actionButton = new ActionButton(FlxG.width - 40, FlxG.height - 40);
+            actionButton.visible = false;
+            add(actionButton);
+
+
             if (FlxG.debug && Globals.platform == "touch")
             {
                 FlxG.mouse.show();
 
-                actionButton = new ActionButton(FlxG.width - 40, FlxG.height - 40);
-                add(actionButton);
+                actionButton.visible = true;
+
+                
             }
             
             add(rollIndicators);
+
+            carPark = new CarPark(0, 0);
+            carPark.visible = false;
+            add(carPark);
+
 
         }
 
@@ -165,13 +177,12 @@ namespace Island
         {
             selected = 0;
             framesElapsed = 0;
-            //actionButton.visible = true;
         }
 
         public void everyAction()
         {
             FlxG.play("putt/sfx/blip");
-            //actionButton.visible = false;
+            actionButton.scale = 1.5f;
         }
 
         public void loadOgmo()
@@ -225,6 +236,14 @@ namespace Island
                 if (framesElapsed == 1)
                 {
                     playSound("hole" + Globals.hole.ToString());
+                }
+                else
+                {
+                    if (Globals.ACTIONJUSTPRESSED)
+                    {
+                        sound.stop();
+
+                    }
                 }
             }
             if (sound.getState() == SoundState.Stopped)
@@ -372,11 +391,11 @@ namespace Island
         private void playForceSound()
         {
             if (selected == 0) playSound("feathertouch");
-            else if (selected == 3) playSound("powerdrive");
-            else if (selected == 4) playSound("chipshot");
-            else if (selected == 5) playSound("pitch");
-            else if (selected == 6) playSound("fade");
-            else if (selected == 7) playSound("draw");
+            else if (selected == 2) playSound("powerdrive");
+            else if (selected == 3) playSound("chipshot");
+            else if (selected == 4) playSound("pitch");
+            else if (selected == 5) playSound("fade");
+            else if (selected == 6) playSound("draw");
         }
 
         public void chooseForce()
@@ -478,12 +497,9 @@ namespace Island
                 switch (selectedPower)
                 {
                     case 1:
-                        multiplier+=0.25f;
+                        multiplier+=0.35f;
                         break;
-                    case 2: 
-                        multiplier+=0.5f;
-                        break;
-                    case 3:
+                    case 2:
                         multiplier *= 5.0f;
                         break;
                     default:
@@ -554,7 +570,10 @@ namespace Island
                     }
                     else if (lee.club == "wood")
                     {
-                        log("ball is in carpark.");
+                        log("ball is in parking lot .");
+                        playSound("ballisinparkinglot");
+                        carPark.visible = true;
+
                     }
                     else if (lee.club == "iron")
                     {
@@ -713,9 +732,6 @@ namespace Island
                 {
                     everyAction();
                 }
-
-                //lee.play("idle");
-                
                 if (FlxControl.LEFTJUSTPRESSED)
                 {
                     FlxG.play("putt/sfx/blip");
@@ -727,7 +743,6 @@ namespace Island
                     FlxG.play("putt/sfx/blip");
                     selected++;
                 }
-
 
                 framesElapsed++;
 
@@ -798,6 +813,10 @@ namespace Island
                 else if (ball.x < hole.x-1)
                     ball.velocity.X = -56;
 
+            }
+            else if (ball.rise == true)
+            {
+                return false;
             }
             else
             {

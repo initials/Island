@@ -24,7 +24,7 @@ namespace Island
             add(menu);
 
             toPlay = false;
-
+            FlxG.playMp3("putt/music/GreenlandIsAlive", 1.0f);
 
         }
 
@@ -40,7 +40,7 @@ namespace Island
                     elapsedInState = 0.16f;
                     if (toPlay == false)
                     {
-                        FlxG.playMp3("putt/music/GreenlandIsAlive", 1.0f);
+                        //FlxG.playMp3("putt/music/GreenlandIsAlive", 1.0f);
                         toPlay = true;
                         
                     }
