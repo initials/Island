@@ -474,8 +474,23 @@ namespace Island
 
                 ball.angle = an + 90;
 
-                int multiplier = 1;
-                multiplier *= selectedPower;
+                float multiplier = 1;
+
+                switch (selectedPower)
+                {
+                    case 1:
+                        multiplier+=0.25f;
+                        break;
+                    case 2: 
+                        multiplier+=0.5f;
+                        break;
+                    case 3:
+                        multiplier *= 5.0f;
+                        break;
+                    default:
+                        break;
+                }
+
                 int initialPower = 5;
 
                 ball.setVelocityFromAngle(initialPower + (aim.health * multiplier));
@@ -515,7 +530,7 @@ namespace Island
                 //Console.WriteLine("-- Ball.x/y {0} {1}", ball.x, ball.y);
 
                 log("Ball is in ... ");
-                playSound("ballisin");
+                //playSound("ballisin");
                 power.visible = false;
             }
 
@@ -533,6 +548,7 @@ namespace Island
                     if (Globals.ballInHole==true)
                     {
                         log("ball is in the hole. Great shot pal.");
+                        playSound("ballisinthehole");
                     }
                     else if (lee.club == "wood")
                     {
@@ -616,6 +632,13 @@ namespace Island
 
             if (sound.getState() == SoundState.Stopped)
             {
+                if (Globals.hole >= 19)
+                {
+                    // Go to score card state;
+                    FlxG.state = new ScoreCardState();
+                    return;
+
+                }
                 if (selected == 0)
                 {
 
@@ -668,6 +691,11 @@ namespace Island
             {
                 Globals.canSkip = true;
             }
+            if (FlxG.debug && FlxG.keys.justPressed(Keys.D4))
+            {
+                Globals.hole = 17;
+            }
+
             if (FlxG.keys.justPressed(Keys.B))
             {
                 FlxG.showBounds = !FlxG.showBounds;
