@@ -40,7 +40,7 @@ namespace Island
         private int suggestionForClubStatus;
         private int suggestionForForceStatus;
         private int ballEndedStatus;
-        private int selectedPower;
+        private int selectedForce;
         private int selectedClub;
         private int playAgainSelected;
 
@@ -238,7 +238,8 @@ namespace Island
             {
                 if (framesElapsed == 1)
                 {
-                    playSound("hole" + Globals.hole.ToString());
+                    if (Globals.hole==2 || Globals.hole==3)
+                        playSound("hole" + Globals.hole.ToString());
                 }
                 else
                 {
@@ -419,7 +420,7 @@ namespace Island
 
                 playForceSound();
 
-                selectedPower = selected;
+                selectedForce = selected;
 
                 resetSelections();
                 state = GameState.Swing;
@@ -494,8 +495,13 @@ namespace Island
                 string[] sp = solution.Split('\n');
                 string[] split = sp[Globals.hole - 1].Split(',');
 
+                Console.WriteLine("Executing solution for this hole:  Aim:{0}, Power:{1}", split[2], split[3]);
+                
+                aim.x = Convert.ToInt32(split[2]);
+                aim.health = Convert.ToInt32(split[3]);
+                selectedClub = Convert.ToInt32(split[4]);
+                selectedForce = Convert.ToInt32(split[5]);
 
-                Console.WriteLine("Solution is:  Aim:{0}, Power:{1}", split[2], split[3]);
 
 
             }
@@ -512,7 +518,7 @@ namespace Island
 
                 float multiplier = 1;
 
-                switch (selectedPower)
+                switch (selectedForce)
                 {
                     case 1:
                         multiplier+=0.35f;
@@ -526,7 +532,7 @@ namespace Island
 
                 int initialPower = 5;
 
-                if (selectedClub != 0)
+                if (selectedClub != 0 && selectedClub != 1)
                 {
                     ball.rise = true;
                 }
@@ -652,12 +658,21 @@ namespace Island
 
             text.text = playAgain[selected].ToString();
 
+            if (FlxControl.CANCELJUSTPRESSED)
+            {
+                playAgainSelected = 0;
+                log("Restarting the hole.");
+                state = GameState.Reset;
+                return;
+            }
+
             if (Globals.ACTIONJUSTPRESSED && selected == 0)
             {
                 playAgainSelected = 0;
 
                 log("You have selected Yes");
                 playSound("youhaveselectedyes");
+
                 Globals.hole++;
 
                 state = GameState.Reset;
@@ -864,7 +879,7 @@ namespace Island
 
                     if (FlxG.debug)
                     {
-                        FlxU.saveToDevice(string.Format("Hole Aim (x) Power: ,{0},{1},{2}", Globals.hole, aim.x, aim.health), "hole" + Globals.hole + ".txt");
+                        FlxU.saveToDevice(string.Format("Hole Aim (x) Power Force: ,{0},{1},{2},{3},{4}", Globals.hole, aim.x, aim.health, selectedClub, selectedForce), "hole" + Globals.hole + ".txt");
                     }
                 }
                 state = GameState.BallEnded;
