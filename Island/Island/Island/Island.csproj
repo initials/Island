@@ -92,6 +92,9 @@
     <Compile Include="WinState.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="data\Finals.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Game.ico" />
     <Content Include="GAMESETTINGS.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

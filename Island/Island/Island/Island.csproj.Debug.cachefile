@@ -127,6 +127,12 @@ Content\putt\sfx\hole18.xnb
 Content\putt\carPark.xnb
 Content\putt\hole_25x50.xnb
 Content\putt\sfx\ballisinparkinglot.xnb
+Content\putt\sfx\firmputt.xnb
+Content\putt\sfx\alittletoomuchjuice.xnb
+Content\putt\sfx\GolfBallInHole.xnb
+Content\putt\sfx\ballisoverthegreen.xnb
+Content\putt\sfx\extremelyclose.xnb
+Content\putt\sfx\youdidnotsink.xnb
 Content\putt\music\GreenlandIsAlive.wma
 Content\putt\lee_150x150.csv
 Content\putt\ball_8x8.csv
@@ -202,6 +208,7 @@ Content\initials\boats.xnb
 Content\flixel\transitionBlack_40x40.xnb
 Content\initials\healthBar.xnb
 Content\initials\SMALL_PIXEL.xnb
+data\Finals.txt
 putt\ogmo\hole1.oel
 putt\ogmo\hole10.oel
 putt\ogmo\hole11.oel

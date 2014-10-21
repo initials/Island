@@ -121,7 +121,7 @@ namespace Island
             int power = (Tile / 10) + 1;
             int direction = Tile % 10;
             float multiplier = 1;
-            Console.WriteLine("Adjusting speed for Tile Power {0} Direction l,u,r,d: {1}", power, direction);
+            //Console.WriteLine("Adjusting speed for Tile Power {0} Direction l,u,r,d: {1}", power, direction);
             
             // Left
             if (direction == 0)

@@ -42,7 +42,7 @@ namespace Island
         private int ballEndedStatus;
         private int selectedPower;
         private int selectedClub;
-
+        private int playAgainSelected;
 
         private Ball ball;
         private Hole hole;
@@ -94,6 +94,7 @@ namespace Island
             suggestionForClubStatus = 0;
             suggestionForForceStatus = 0;
             selectedClub = 0;
+            playAgainSelected = 0;
 
             Globals.ballInHole = false;
 
@@ -219,6 +220,8 @@ namespace Island
         /// </summary>
         public void chooseIntroduction()
         {
+            text.text = "Hole " + Globals.hole;
+
             if (Globals.hole == 1)
             {
                 if (lee.debugName == "introduction")
@@ -391,6 +394,7 @@ namespace Island
         private void playForceSound()
         {
             if (selected == 0) playSound("feathertouch");
+            else if (selected == 1) playSound("firmputt");
             else if (selected == 2) playSound("powerdrive");
             else if (selected == 3) playSound("chipshot");
             else if (selected == 4) playSound("pitch");
@@ -481,14 +485,28 @@ namespace Island
             power.visible = true;
             power.setValue(aim.health);
 
-            if (Globals.ACTIONJUSTPRESSED)
+            bool cheat=false;
+            if (FlxG.keys.justPressed(Keys.D5))
+            {
+                cheat = true;
+
+                string solution = FlxU.loadFromDevice("data/Finals.txt");
+                string[] sp = solution.Split('\n');
+                string[] split = sp[Globals.hole - 1].Split(',');
+
+
+                Console.WriteLine("Solution is:  Aim:{0}, Power:{1}", split[2], split[3]);
+
+
+            }
+            if (Globals.ACTIONJUSTPRESSED || cheat)
             {
                 float an = FlxU.getAngle(new Vector2(ball.x + (ball.width / 2), ball.y + (ball.height / 2)), new Vector2(aim.x + (aim.width / 2), aim.y + (aim.height / 2)));
 
                 float an2 = FlxU.getAngle(new Vector2(ball.x, ball.y), new Vector2(aim.x, aim.y));
                 float an3 = FlxU.getAngle(new Vector2(ball.x + (ball.width / 1), ball.y + (ball.height / 1)), new Vector2(aim.x + (aim.width / 1), aim.y + (aim.height / 1)));
 
-                Console.WriteLine("Angle to shoot is {0} , {1} , {2}", an, an2, an3);
+                //Console.WriteLine("Angle to shoot is {0} , {1} , {2}", an, an2, an3);
 
                 ball.angle = an + 90;
 
@@ -578,15 +596,10 @@ namespace Island
                     else if (lee.club == "iron")
                     {
                         log("ball is over the green. Next time try using a putter.");
+                        playSound("ballisoverthegreen");
+
                     }
-                    else if (dist < 8)
-                    {
-                        log("Extremely close, but on the pro circuit give me's are not allowed.");
-                    }
-                    else if (dist > 50)
-                    {
-                        log("Not even close there tiger.");
-                    }
+
                     else if (ball.x > FlxG.width)
                     {
                         log("too far to the right.");
@@ -599,7 +612,17 @@ namespace Island
                     {
                         log("too hard there, champ. ease up on the power next time.");
                     }
+                    else if (dist < 12)
+                    {
+                        log("Extremely close, but on the pro circuit give me's are not allowed.");
+                        playSound("extremelyclose");
 
+                    }
+                    else if (dist > 13)
+                    {
+                        log("Not even close there tiger.");
+                        playSound("youdidnotsink");
+                    }
 
 
 
@@ -631,6 +654,8 @@ namespace Island
 
             if (Globals.ACTIONJUSTPRESSED && selected == 0)
             {
+                playAgainSelected = 0;
+
                 log("You have selected Yes");
                 playSound("youhaveselectedyes");
                 Globals.hole++;
@@ -640,6 +665,8 @@ namespace Island
             }
             if (Globals.ACTIONJUSTPRESSED && selected == 1)
             {
+                playAgainSelected = 1;
+
                 playSound("youhaveselectedno");
                 log("You have selected No");
                 
@@ -667,7 +694,7 @@ namespace Island
                     FlxG.state = new ScoreCardState();
                     return;
                 }
-                if (selected == 0)
+                if (playAgainSelected == 0)
                 {
                     resetSelections();
                     
@@ -681,7 +708,7 @@ namespace Island
                     FlxG.state = new PuttState();
                     return;
                 }
-                else if (selected == 1)
+                else if (playAgainSelected == 1)
                 {
                     resetSelections();
                     FlxG.state = new MenuState();
@@ -708,7 +735,13 @@ namespace Island
             }
             if (FlxG.debug && FlxG.keys.justPressed(Keys.D4))
             {
-                Globals.hole = 17;
+                Globals.hole = 19;
+                for (int i = 0; i < 18; i++)
+                {
+                    Globals.scoreCard.Add(0);
+                }
+                
+
             }
 
             if (FlxG.keys.justPressed(Keys.B))
@@ -801,16 +834,19 @@ namespace Island
 
         protected bool ballInHole(object Sender, FlxSpriteCollisionEvent e)
         {
-            Console.WriteLine("Ball speed at time of sinking {0} {1} -- ball x/y {2} {3} hole x/y {4} {5} ", ball.velocity.X, ball.velocity.Y, ball.x, ball.y,hole.x,hole.y);
+            Console.WriteLine("Ball speed at time of sinking x {0} y {1} -- ball x/y {2} {3} hole x/y {4} {5} ", ball.velocity.X, ball.velocity.Y, ball.x, ball.y,hole.x,hole.y);
             
-            if (ball.velocity.Y < -60)
+            if (ball.velocity.Y < -35)
             {
                 // Voice -- "A little too much juice on that one. Next time try a softer approach.
                 // too fast to sink
 
+                playSound("alittletoomuchjuice");
+                FlxG.play("putt/sfx/ballinhole");
+
                 if (ball.x>hole.x-1)
                     ball.velocity.X = 56;
-                else if (ball.x < hole.x-1)
+                else if (ball.x < hole.x-3)
                     ball.velocity.X = -56;
 
             }
@@ -823,9 +859,13 @@ namespace Island
                 //went in the hole.
                 if (ball.visible)
                 {
-                    FlxG.play("putt/sfx/ballinhole");
+                    FlxG.play("putt/sfx/GolfBallInHole");
                     Globals.ballInHole = true;
 
+                    if (FlxG.debug)
+                    {
+                        FlxU.saveToDevice(string.Format("Hole Aim (x) Power: ,{0},{1},{2}", Globals.hole, aim.x, aim.health), "hole" + Globals.hole + ".txt");
+                    }
                 }
                 state = GameState.BallEnded;
                 ball.visible = false;

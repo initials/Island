@@ -14,6 +14,7 @@ namespace Island
     {
         private FlxSprite menu;
         private bool toPlay;
+        private bool toStart;
 
         override public void create()
         {
@@ -26,6 +27,7 @@ namespace Island
             toPlay = false;
             FlxG.playMp3("putt/music/GreenlandIsAlive", 1.0f);
 
+            toStart = false;
         }
 
         override public void update()
@@ -33,7 +35,7 @@ namespace Island
             
             if (elapsedInState > 1.0f)
             {
-                menu.color = FlxColor.randomColor();
+                
 
                 if (elapsedInState > 1.25f)
                 {
@@ -58,6 +60,18 @@ namespace Island
             if (FlxControl.ACTIONJUSTPRESSED || FlxG.mouse.pressed() )
             {
                 if (elapsedInState > 0.15f)
+                {
+                    FlxG.play("putt/sfx/blip");
+                    toStart = true;
+                    elapsedInState = 0;
+                }
+            }
+
+            if (toStart)
+            {
+                menu.color = FlxColor.randomColor();
+
+                if (elapsedInState > 0.25f)
                 {
                     FlxG.stopMp3();
                     Globals.canSkip = false;

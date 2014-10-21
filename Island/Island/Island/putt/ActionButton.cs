@@ -34,13 +34,5 @@ namespace Island
             base.update();
         }
 
-        protected bool overlapCursor(object Sender, FlxSpriteCollisionEvent e)
-        {
-            if (FlxG.mouse.pressed())
-                scale = 0.9f;
-            else 
-                scale = 1.1f;
-            return true;
-        }
     }
 }

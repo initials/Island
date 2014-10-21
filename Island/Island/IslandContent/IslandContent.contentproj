@@ -358,6 +358,36 @@
       <Importer>Mp3Importer</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
+    <Compile Include="putt\sfx\firmputt.mp3">
+      <Name>firmputt</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="putt\sfx\alittletoomuchjuice.mp3">
+      <Name>alittletoomuchjuice</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="putt\sfx\GolfBallInHole.mp3">
+      <Name>GolfBallInHole</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="putt\sfx\ballisoverthegreen.mp3">
+      <Name>ballisoverthegreen</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="putt\sfx\extremelyclose.mp3">
+      <Name>extremelyclose</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="putt\sfx\youdidnotsink.mp3">
+      <Name>youdidnotsink</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="putt\ball_8x8.csv">
