@@ -107,7 +107,7 @@ namespace Island
                 "Pitch", "Fade", "Draw", 
                 "Lay-up", "Knock Down", "Flop" };
 
-            playAgain = new List<string> { "Yes", "No" };
+            playAgain = new List<string> { "Yes", "No", "Play Hole Again" };
 
             game = new FlxSprite(0, 0);
             game.loadGraphic("putt/bg", true, false, 256, 224);
@@ -141,10 +141,14 @@ namespace Island
             power.visible = false;
 
             log("Welcome to Lee Carvallo's Putting Challenge. I am Carvallo.");
-
+            
             sound = new FlxSound();
             sound.loadEmbedded("putt/sfx/welcome", false);
-            sound.play();
+
+            if (Globals.hole == 1)
+            {
+                sound.play();
+            }
 
             actionButton = new ActionButton(FlxG.width - 40, FlxG.height - 40);
             actionButton.visible = false;
@@ -154,10 +158,7 @@ namespace Island
             if (FlxG.debug && Globals.platform == "touch")
             {
                 FlxG.mouse.show();
-
                 actionButton.visible = true;
-
-                
             }
             
             add(rollIndicators);
@@ -165,7 +166,6 @@ namespace Island
             carPark = new CarPark(0, 0);
             carPark.visible = false;
             add(carPark);
-
 
         }
 
@@ -414,7 +414,7 @@ namespace Island
 
             text.text = force[selected].ToString();
 
-            if (Globals.ACTIONJUSTPRESSED && (selected == 0 || suggestionForForceNoted))
+            if (Globals.ACTIONJUSTPRESSED && (selected == 0 || suggestionForForceNoted || Globals.hole!=1))
             {
                 log("You have entered " + force[selected].ToString() );
 
@@ -428,11 +428,12 @@ namespace Island
             }
             else if (Globals.ACTIONJUSTPRESSED)
             {
-                log("I suggest feather touch.");
+
                 playSound("youhavechosen");
 
                 suggestionForForceNoted = true;
                 suggestionForForceStatus = 1;
+
             }
 
             if (suggestionForForceStatus == 1)
@@ -447,6 +448,7 @@ namespace Island
             {
                 if (sound.getState() == SoundState.Stopped)
                 {
+                    log("I suggest feather touch.");
                     playSound("isuggestfeathertouch");
                     suggestionForForceStatus = 3;
                 }
@@ -658,8 +660,9 @@ namespace Island
 
             text.text = playAgain[selected].ToString();
 
-            if (FlxControl.CANCELJUSTPRESSED)
+            if (FlxControl.CANCELJUSTPRESSED || (Globals.ACTIONJUSTPRESSED && selected == 2))
             {
+                Globals.hasPlayedHoleAgain = true;
                 playAgainSelected = 0;
                 log("Restarting the hole.");
                 state = GameState.Reset;
@@ -692,7 +695,10 @@ namespace Island
 
         public void chooseReset()
         {
-
+            if (Globals.ACTIONJUSTPRESSED)
+            {
+                sound.stop();
+            }
             if (sound.getState() == SoundState.Stopped)
             {
                 if (Globals.ballInHole)
@@ -755,8 +761,6 @@ namespace Island
                 {
                     Globals.scoreCard.Add(0);
                 }
-                
-
             }
 
             if (FlxG.keys.justPressed(Keys.B))
@@ -764,7 +768,6 @@ namespace Island
                 FlxG.showBounds = !FlxG.showBounds;
             }
             lee.soundState = sound.getState();
-
 
             //------------------------------------------------------------------
             //Console.WriteLine(sound.getName());  

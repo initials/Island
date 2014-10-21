@@ -17,7 +17,7 @@ namespace Island
         public bool startHealth;
 
         private int speed;
-        private int hspeed;
+        private float hspeed;
 
         private bool direction;
         private bool hdirection;
@@ -58,11 +58,11 @@ namespace Island
             }
             else if (Globals.hole < 14)
             {
-                hspeed = 2;
+                hspeed = 1.5f;
             }
             else if (Globals.hole < 18)
             {
-                hspeed = 3;
+                hspeed = 2;
             }
 
             if (startAim)

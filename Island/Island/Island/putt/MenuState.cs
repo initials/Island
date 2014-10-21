@@ -28,6 +28,8 @@ namespace Island
             FlxG.playMp3("putt/music/GreenlandIsAlive", 1.0f);
 
             toStart = false;
+
+            FlxGlobal.cheatString = "";
         }
 
         override public void update()
@@ -73,11 +75,22 @@ namespace Island
 
                 if (elapsedInState > 0.25f)
                 {
+                    Globals.hasPlayedHoleAgain = false;
                     FlxG.stopMp3();
                     Globals.canSkip = false;
                     Globals.hole = 1;
                     FlxG.state = new PuttState();
                 }
+            }
+
+            if (FlxGlobal.cheatString.StartsWith("hole"))
+            {
+                Globals.hasPlayedHoleAgain = false;
+                Globals.hole = Convert.ToInt32( FlxGlobal.cheatString.Substring(4, FlxGlobal.cheatString.Length-4)) ;
+                FlxG.stopMp3();
+                Globals.canSkip = false;
+                FlxG.state = new PuttState();
+                return;
             }
 
             base.update();

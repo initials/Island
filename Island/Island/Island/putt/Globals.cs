@@ -33,6 +33,8 @@ namespace Island
 
         //public static Vector2 ballStartPosition = new Vector2(FlxG.width / 2 - 2, FlxG.height - 15);
 
+        public static bool hasPlayedHoleAgain = false;
+
         public static bool ACTIONJUSTPRESSED
         {
             get

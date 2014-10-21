@@ -1,18 +1,24 @@
 ﻿Hole Aim (x) Power Force: ,1,128,36,0,0
 Hole Aim (x) Power Force: ,2,153,46,0,0
 Hole Aim (x) Power Force: ,3,117,33,0,0
-Hole Aim (x) Power: ,4,128,36,1
-Hole Aim (x) Power: ,5,128,36,1
+Hole Aim (x) Power Force: ,4,139,35,0,0
+Hole Aim (x) Power Force: ,5,225,49,0,0
 Hole Aim (x) Power: ,6,128,36,1
 Hole Aim (x) Power: ,7,128,36,1
 Hole Aim (x) Power: ,8,128,36,1
 Hole Aim (x) Power: ,9,128,36,1
-Hole Aim (x) Power: ,10,128,36,1
-Hole Aim (x) Power: ,11,128,36,1
+Hole Aim (x) Power Force: ,10,163,49,0,0
+Hole Aim (x) Power Force: ,11,181,49,0,0
 Hole Aim (x) Power: ,12,128,36,1
 Hole Aim (x) Power: ,13,128,36,1
 Hole Aim (x) Power: ,14,128,36,1
-Hole Aim (x) Power: ,15,128,36,1
-Hole Aim (x) Power: ,16,128,36,1
+Hole Aim (x) Power Force: ,15,157,46,0,0
+Hole Aim (x) Power Force: ,16,202,49,0,0
 Hole Aim (x) Power: ,17,128,36,1
 Hole Aim (x) Power: ,18,128,36,1
+
+
+
+--
+extras
+Hole Aim (x) Power Force: ,1,131,27,0,1
