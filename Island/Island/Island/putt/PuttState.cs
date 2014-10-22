@@ -121,13 +121,17 @@ namespace Island
             add(text);
             
             ball = new Ball(FlxG.width / 2 - 8, FlxG.height - 24);
-            add(ball);
-
+            
+            
             hole = new Hole(FlxG.width / 2, FlxG.height / 2);
-            add(hole);
 
             // load the level.
             loadOgmo();
+
+            
+            add(hole);
+            add(ball);
+
 
             lee = new Lee(FlxG.width / 6, FlxG.height - 170);
             add(lee);
@@ -545,7 +549,7 @@ namespace Island
                 aim.startHealth = false;
 
                 FlxG.play("putt/sfx/putt", 1.0f, false);
-                rollTiles.color = new Color(1, 1, 1, 0.1f);
+                rollTiles.color = new Color(1, 1, 1, 0.4f);
 
                 resetSelections();
                 state = GameState.BallInPlay;

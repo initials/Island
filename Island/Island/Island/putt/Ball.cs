@@ -24,7 +24,7 @@ namespace Island
             play("size2");
 
 
-            setDrags(3, 10);
+            setDrags(10, 10);
             width = 4;
             height = 2;
             setOffset(2, 6);
@@ -83,17 +83,17 @@ namespace Island
 
             if (y < FlxG.height / 2)
             {
-                setDrags(22, 44);
+                setDrags(44, 44);
             }
             else if (y < (FlxG.height / 2) - 40)
             {
-                setDrags(50, 144);
+                setDrags(144, 144);
                 
             }
 
             else
             {
-                setDrags(3, 10);
+                setDrags(10, 10);
             }
 
             scale = 1;
@@ -118,7 +118,7 @@ namespace Island
         public void adjustSpeedForTile(int Tile)
         {
 
-            int power = (Tile / 10) + 1;
+            float power = ((Tile / 10) + 1);
             int direction = Tile % 10;
             float multiplier = 1;
             //Console.WriteLine("Adjusting speed for Tile Power {0} Direction l,u,r,d: {1}", power, direction);
