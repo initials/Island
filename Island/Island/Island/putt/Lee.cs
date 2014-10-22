@@ -19,8 +19,8 @@ namespace Island
         public Lee(int xPos, int yPos)
             : base(xPos, yPos)
         {
-            loadGraphic(FlxG.Content.Load<Texture2D>("putt/lee_150x150"), true, false, 150, 200);
-            loadAnimationsFromGraphicsGaleCSV("content/putt/lee_150x150.csv", null, new List<string> {"introduction_talk", "swing_wood", "swing_putter"}, true);
+            loadGraphic(FlxG.Content.Load<Texture2D>("putt/lee_200x200"), true, false, 200, 200);
+            loadAnimationsFromGraphicsGaleCSV("content/putt/lee_200x200.csv", null, new List<string> {"introduction_talk", "swing_wood", "swing_putter"}, true);
             //addAnimation("idlex_putter", new int[] { 15,16 }, 12);
             boundingBoxOverride = false;
             debugName = "";
@@ -32,7 +32,8 @@ namespace Island
             addAnimationCallback(cb);
 
             height = 150;
-            setOffset(0, 25);
+            width = 150;
+            setOffset(25, 25);
 
         }
 
