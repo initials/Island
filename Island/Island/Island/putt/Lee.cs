@@ -14,6 +14,7 @@ namespace Island
     {
         public string club;
         public SoundState soundState;
+        public bool canHit;
 
         public Lee(int xPos, int yPos)
             : base(xPos, yPos)
@@ -26,7 +27,27 @@ namespace Island
             club = "";
             soundState = SoundState.Stopped;
 
+            canHit = false;
 
+            addAnimationCallback(cb);
+
+        }
+
+        public void cb(string Name, uint Frame, int FrameIndex)
+        {
+            if (Name == "swing_wood" || Name == "swing_putter" || Name == "swing_iron" )
+            {
+                if (Frame == _curAnim.frames.Length - 3)
+                {
+                    canHit=true;
+                }
+                else
+                {
+                    canHit=false;
+                }
+
+
+            }
         }
 
         override public void update()

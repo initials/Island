@@ -12,20 +12,55 @@ namespace Island
 {
     class CarPark : FlxSprite
     {
-        private Ball ball;
+        private FlxSprite ball;
         private List<Vector2> ballPositions;
         private int ballPositionCounter;
         private bool record;
+
+        private FlxPath _path;
 
         public CarPark(int xPos, int yPos)
             : base(xPos, yPos)
         {
             loadGraphic("putt/carPark", true, false, 256, 224);
 
+            _path = new FlxPath();
+            _path.add(0, 0);
+            _path.add(13,28);
+            _path.add(39,19);
+            _path.add(63,55);
+            _path.add(84,104);
+            _path.add(83,144);
+            _path.add(103,175);
+            _path.add(105,130);
+            _path.add(110,103);
+            _path.add(132,81);
+            _path.add(156,70);
+            _path.add(165,81);
+            _path.add(173,102);
+            _path.add(176,124);
+            _path.add(179,141);
+            _path.add(181,139);
+            _path.add(186,115);
+            _path.add(201,76);
+            _path.add(225,61);
+            _path.add(800, 33);
+            
+            
+            
+            
+
             record = false;
 
-            ball = new Ball(20, 20);
+            ball = new FlxSprite(0, 0);
+            ball.loadGraphic("putt/ball_8x8", true, false, 8, 8);
+            ball.frame = 2;
+
             ballPositionCounter = 0;
+
+            ball.pathCornering = 100;
+            
+
 
             ballPositions = new List<Vector2>();
 
@@ -145,32 +180,55 @@ namespace Island
         override public void update()
         {
 
+            if (FlxG.mouse.justPressed())
+            {
+                
+            }
             if (record)
             {
-                if (visible && FlxG.mouse.pressed())
+                if (visible && FlxG.mouse.justPressed())
                 {
-                    Console.WriteLine("ballPositions.Add(new Vector2(" + FlxG.mouse.x + "," + FlxG.mouse.y + "));");
+                    
+                    //Console.WriteLine("ballPositions.Add(new Vector2(" + FlxG.mouse.x + "," + FlxG.mouse.y + "));");
+                    //_path.add(0,0);
+
+
+                    Console.WriteLine("_path.add(" + FlxG.mouse.x + "," + FlxG.mouse.y + ");");
+
                 }
             }
             else
             {
 
-                ball.x = ballPositions[ballPositionCounter].X;
-                ball.y = ballPositions[ballPositionCounter].Y;
-                if (visible)
+                if (ball.x > 224)
                 {
-                    ballPositionCounter++;
-                }
-
-                if (ballPositionCounter > ballPositions.Count - 1)
-                {
-                    ballPositionCounter = 0;
                     visible = false;
                 }
+
+                //ball.x = ballPositions[ballPositionCounter].X;
+                //ball.y = ballPositions[ballPositionCounter].Y;
+                //if (visible)
+                //{
+                //    ballPositionCounter++;
+                //}
+
+                //if (ballPositionCounter > ballPositions.Count - 1)
+                //{
+                //    ballPositionCounter = 0;
+                //    visible = false;
+                //}
             }
+
+            ball.update();
 
             base.update();
 
+        }
+
+        public void setToVisible()
+        {
+            ball.followPath(_path, 275, PATH_LOOP_FORWARD, true);
+            visible = true;
         }
 
         public override void render(SpriteBatch spriteBatch)

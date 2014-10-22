@@ -504,10 +504,8 @@ namespace Island
                 selectedClub = Convert.ToInt32(split[4]);
                 selectedForce = Convert.ToInt32(split[5]);
 
-
-
             }
-            if (Globals.ACTIONJUSTPRESSED || cheat)
+            if (lee.canHit)
             {
                 float an = FlxU.getAngle(new Vector2(ball.x + (ball.width / 2), ball.y + (ball.height / 2)), new Vector2(aim.x + (aim.width / 2), aim.y + (aim.height / 2)));
 
@@ -551,8 +549,12 @@ namespace Island
 
                 resetSelections();
                 state = GameState.BallInPlay;
-                lee.debugName = "swing";
                 return;
+            }
+            if (Globals.ACTIONJUSTPRESSED || cheat)
+            {
+                lee.debugName = "swing";
+                aim.startHealth = false;
             }
         }
 
@@ -598,7 +600,8 @@ namespace Island
                     {
                         log("ball is in parking lot .");
                         playSound("ballisinparkinglot");
-                        carPark.visible = true;
+                        carPark.setToVisible();
+
 
                     }
                     else if (lee.club == "iron")
