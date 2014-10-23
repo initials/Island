@@ -15,11 +15,21 @@ namespace Island
 
         public int power;
 
-        public RollIndicator(int xPos, int yPos)
+        public RollIndicator(int xPos, int yPos, int Style)
             : base(xPos, yPos)
         {
-            loadGraphic(FlxG.Content.Load<Texture2D>("putt/rollIndicators"), true, false, 8, 8);
+            loadGraphic(FlxG.Content.Load<Texture2D>("putt/rollAnim_8x8"), true, false, 8, 8);
+
+            addAnimation("flow", new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 12);
+
+            play("flow");
+
             power = 1;
+
+            Console.WriteLine("Roll indicator {0}", Style);
+
+
+
 
         }
 

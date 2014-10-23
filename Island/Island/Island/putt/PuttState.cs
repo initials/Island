@@ -170,7 +170,7 @@ namespace Island
             carPark = new CarPark(0, 0);
             carPark.visible = false;
             add(carPark);
-
+                
         }
 
         public void log(string Log)
@@ -199,7 +199,39 @@ namespace Island
             rollTiles = new FlxTilemap();
             rollTiles.loadMap(ogmo["roll"], FlxG.Content.Load<Texture2D>("putt/rollIndicators"), 8, 8);
             rollTiles.color = new Color(1, 1, 1, 0.8f);
-            add(rollTiles);
+            //add(rollTiles);
+
+
+
+            // ------------------------------------
+            string[] cols;
+            string[] rows = ogmo["roll"].Split('\n');
+            int heightInTiles = rows.Length;
+            int r = 0;
+            int c;
+            
+            foreach (var item in rows)
+            {
+                int l = 0;
+                cols = rows[r].Split(',');
+                foreach (var x in cols)
+                {
+
+                    if (x != "0")
+                    {
+
+                        RollIndicator roll = new RollIndicator(l * 8, r * 8, 1);
+                    }
+
+
+                    l++;
+                }
+
+                r++;
+            }
+
+
+
 
             List<Dictionary<string, string>> levelNodes = FlxXMLReader.readNodesFromOelFile("putt/ogmo/hole" + Globals.hole.ToString() + ".oel", "level/bg");
 
