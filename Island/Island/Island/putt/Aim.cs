@@ -131,12 +131,12 @@ namespace Island
 
             if (this.x + (width / 2) < ballPosition.X)
             {
-                Console.WriteLine("Less Than");
+                //Console.WriteLine("Less Than");
                 l = ExtendPoints(new Vector2(this.x + (width / 2), this.y + (height / 2)), ballPosition, 10);
             }
             else
             {
-                Console.WriteLine("More Than");
+                //Console.WriteLine("More Than");
                 l = ExtendPoints2(new Vector2(this.x + (width / 2), this.y + (height / 2) ), new Vector2(ballPosition.X, ballPosition.Y ), 10);
             }
 
