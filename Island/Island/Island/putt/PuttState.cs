@@ -577,6 +577,13 @@ namespace Island
                 }
 
                 ball.setVelocityFromAngle(initialPower + (aim.health * multiplier));
+
+                Vector2 v2 = ball.getNormalizedVelocityFromAngle();
+                Console.WriteLine("X {0} Y {1} ", v2.X.ToString(), v2.Y.ToString() );
+                ball.normalizedDrags = v2;
+
+
+
                 ball.maxVelocity.X = initialPower + (aim.health * multiplier);
                 ball.maxVelocity.Y = initialPower + (aim.health * multiplier);
                 ball.angle = 0;
