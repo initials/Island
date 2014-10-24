@@ -16,6 +16,10 @@ namespace Island
         private FlxSprite shadow;
         public bool rise;
 
+        public Vector2 normalizedDrags;
+
+
+
         public Ball(int xPos, int yPos)
             : base(xPos, yPos)
         {
@@ -36,6 +40,9 @@ namespace Island
             shadow.color = Color.Black;
             shadow.alpha = 0.1f;
             rise = false;
+
+            normalizedDrags = new Vector2(0, 0);
+
 
         }
 
