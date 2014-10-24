@@ -497,6 +497,9 @@ namespace Island
 
         public void chooseSwing()
         {
+
+            aim.ballPosition = new Vector2(ball.x + (ball.width/2), ball.y + (ball.height/2) );
+
             text.text = " ";
             rollTiles.color = new Color(1, 1, 1, 1.0f);
 
@@ -580,9 +583,8 @@ namespace Island
 
                 Vector2 v2 = ball.getNormalizedVelocityFromAngle();
                 Console.WriteLine("X {0} Y {1} ", v2.X.ToString(), v2.Y.ToString() );
-                ball.normalizedDrags = v2;
 
-
+                ball.normalizedDrags = new Vector2(Math.Abs(v2.X), Math.Abs(v2.Y));
 
                 ball.maxVelocity.X = initialPower + (aim.health * multiplier);
                 ball.maxVelocity.Y = initialPower + (aim.health * multiplier);

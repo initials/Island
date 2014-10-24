@@ -21,6 +21,10 @@ namespace Island
 
         private bool direction;
         private bool hdirection;
+        
+        private FlxGroup points;
+
+        public Vector2 ballPosition;
 
         public Aim(int xPos, int yPos)
             : base(xPos, yPos)
@@ -34,6 +38,17 @@ namespace Island
             startAim = false;
             startHealth = false;
 
+            points = new FlxGroup();
+            for (int i = 0; i < 10; i++)
+            {
+                FlxSprite point = new FlxSprite(1 * i, 1 * i);
+                point.loadGraphic("Palette_NTSC",true,false,2,2);
+                point.frame = 66 * i;
+                //point.velocity.X = 5;
+                points.add(point);
+            }
+
+            ballPosition = new Vector2(0, 0);
         }
 
         override public void update()
@@ -112,8 +127,87 @@ namespace Island
             }
 
 
+            List<Vector2> l = new List<Vector2>();
 
+            if (this.x + (width / 2) < ballPosition.X)
+            {
+                Console.WriteLine("Less Than");
+                l = ExtendPoints(new Vector2(this.x + (width / 2), this.y + (height / 2)), ballPosition, 10);
+            }
+            else
+            {
+                Console.WriteLine("More Than");
+                l = ExtendPoints2(new Vector2(this.x + (width / 2), this.y + (height / 2) ), new Vector2(ballPosition.X, ballPosition.Y ), 10);
+            }
+
+            int i = 0;
+
+            //Console.WriteLine("This item {0}, X {1} Y {2} L Count = {3}, ", i, this.x, this.y, l.Count);
+
+            foreach (var item in l)
+            {
+                points.members[i].x = item.X;
+                points.members[i].y = item.Y;
+                i++;
+            }
+
+            foreach (var item in points.members)
+            {
+                item.update();
+            }
             base.update();
+
+        }
+
+        private static List<Vector2> ExtendPoints(Vector2 pt1, Vector2 pt4, int numberOfPoints)
+        {
+            List<Vector2> extendedPoints = new List<Vector2>();
+            extendedPoints.Add(pt1);
+
+            for (double d = 1; d < numberOfPoints - 1; d++)
+            {
+                double a = (Math.Max(pt1.X, pt4.X) - Math.Min(pt1.X, pt4.X)) * d / (double)(numberOfPoints - 1) + Math.Min(pt1.X, pt4.X);
+                double b = (Math.Max(pt1.Y, pt4.Y) - Math.Min(pt1.Y, pt4.Y)) * d / (double)(numberOfPoints - 1) + Math.Min(pt1.Y, pt4.Y);
+                var pt2 = new Vector2((float)a, (float)b);
+                extendedPoints.Add(pt2);
+            }
+
+            extendedPoints.Add(pt4);
+            return extendedPoints;
+        }
+
+        private static List<Vector2> ExtendPoints2(Vector2 pt1, Vector2 pt4, int numberOfPoints)
+        {
+            List<Vector2> extendedPoints = new List<Vector2>();
+            extendedPoints.Add(pt1);
+
+            for (double d = 1; d < numberOfPoints - 1; d++)
+            {
+                double a = (Math.Max(pt1.X, pt4.X) - Math.Min(pt1.X, pt4.X)) * d / (double)(numberOfPoints - 1) + Math.Min(pt1.X, pt4.X);
+                double b = (Math.Max(pt1.Y, pt4.Y) - Math.Min(pt1.Y, pt4.Y)) * d / (double)(numberOfPoints - 1) + Math.Min(pt1.Y, pt4.Y);
+                var pt2 = new Vector2((float)a, (float)b);
+                extendedPoints.Add(pt2);
+            }
+
+            extendedPoints.Add(pt4);
+            return extendedPoints;
+        }
+
+
+
+        public override void render(SpriteBatch spriteBatch)
+        {
+
+
+            
+
+
+            base.render(spriteBatch);
+
+            foreach (var item in points.members)
+            {
+                item.render(spriteBatch);
+            }
 
         }
 
