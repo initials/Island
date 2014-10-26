@@ -25,7 +25,8 @@ namespace Island
             addAnimation("flow3", new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 12);
             addAnimation("flow4", new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 16);
 
-
+            
+            boundingBoxOverride = false;
             
 
             //power = 1;

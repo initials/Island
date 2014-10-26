@@ -204,10 +204,10 @@ namespace Island
 
             base.render(spriteBatch);
 
-            foreach (var item in points.members)
-            {
-                item.render(spriteBatch);
-            }
+            //foreach (var item in points.members)
+            //{
+            //    item.render(spriteBatch);
+            //}
 
         }
 

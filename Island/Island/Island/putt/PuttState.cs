@@ -217,9 +217,9 @@ namespace Island
                 foreach (var x in cols)
                 {
 
-                    if (x != "-1")
+                    if (x != "-1" && x!="-1\r")
                     {
-                        //Console.WriteLine("Roll: {0}", x);
+                        Console.WriteLine("Roll: {0}", x);
 
                         RollIndicator roll = new RollIndicator(l * 8, r * 8, Convert.ToInt32(x) );
                         add(roll);
