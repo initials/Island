@@ -107,7 +107,7 @@ namespace Island
                 "Pitch", "Fade", "Draw", 
                 "Lay-up", "Knock Down", "Flop" };
 
-            playAgain = new List<string> { "Yes", "No", "Play Hole Again" };
+            playAgain = new List<string> { "Yes", "No", "Skip Hole +9" };
 
             game = new FlxSprite(0, 0);
             game.loadGraphic("putt/bg", true, false, 256, 224);
@@ -137,7 +137,7 @@ namespace Island
             add(lee);
 
             aim = new Aim(1, FlxG.height / 2);
-
+            aim.y = hole.y;
             add(aim);
 
             power = new FlxBar(5, FlxG.height - 20, FlxBar.FILL_LEFT_TO_RIGHT, 100, 8, null, "", 0, 50, true);
@@ -521,6 +521,9 @@ namespace Island
             }
         }
 
+        /// <summary>
+        /// Hits the ball at the end.
+        /// </summary>
         public void choosePower()
         {
             if (framesElapsed == 3)
@@ -596,6 +599,9 @@ namespace Island
                 rollTiles.color = new Color(1, 1, 1, 0.4f);
 
                 resetSelections();
+                
+                FlxG.score++;
+
                 state = GameState.BallInPlay;
                 return;
             }
@@ -713,24 +719,61 @@ namespace Island
 
             if (FlxControl.CANCELJUSTPRESSED || (Globals.ACTIONJUSTPRESSED && selected == 2))
             {
-                Globals.hasPlayedHoleAgain = true;
                 playAgainSelected = 0;
-                log("Restarting the hole.");
+
+                log("You have selected Skip Hole");
+                //playSound("youhaveselectedyes");
+
+                Globals.hole++;
+                FlxG.score+=9;
+                if (Globals.ballInHole)
+                {
+                    Globals.scoreCard.Add(FlxG.score);
+                }
+                else
+                {
+                    Globals.scoreCard.Add(0);
+                }
+
                 state = GameState.Reset;
                 return;
             }
 
             if (Globals.ACTIONJUSTPRESSED && selected == 0)
             {
-                playAgainSelected = 0;
+                if (Globals.ballInHole == true)
+                {
+                    playAgainSelected = 0;
 
-                log("You have selected Yes");
-                playSound("youhaveselectedyes");
+                    log("You have selected Yes");
+                    playSound("youhaveselectedyes");
 
-                Globals.hole++;
+                    Globals.hole++;
 
-                state = GameState.Reset;
-                return;
+
+                    //SAVE THE SCORE
+                    if (Globals.ballInHole)
+                    {
+                        Globals.scoreCard.Add(FlxG.score);
+                    }
+                    else
+                    {
+                        Globals.scoreCard.Add(0);
+                    }
+
+
+
+                    state = GameState.Reset;
+                    return;
+                }
+                else
+                {
+                    Globals.hasPlayedHoleAgain = true;
+                    playAgainSelected = 0;
+                    log("Restarting the hole.");
+                    state = GameState.Reset;
+                    return;
+                }
             }
             if (Globals.ACTIONJUSTPRESSED && selected == 1)
             {
@@ -752,14 +795,7 @@ namespace Island
             }
             if (sound.getState() == SoundState.Stopped)
             {
-                if (Globals.ballInHole)
-                {
-                    Globals.scoreCard.Add(1);
-                }
-                else
-                {
-                    Globals.scoreCard.Add(0);
-                }
+
                 if (Globals.hole >= 19)
                 {
                     // Go to score card state;
