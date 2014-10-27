@@ -39,12 +39,13 @@ namespace Island
             startHealth = false;
 
             points = new FlxGroup();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 4; i++)
             {
-                FlxSprite point = new FlxSprite(1 * i, 1 * i);
+                FlxSprite point = new FlxSprite(4 * i, 4 * i);
                 point.loadGraphic("Palette_NTSC",true,false,2,2);
                 point.frame = 66 * i;
                 //point.velocity.X = 5;
+                point.scale = 1;
                 points.add(point);
             }
 
@@ -144,12 +145,28 @@ namespace Island
 
             //Console.WriteLine("This item {0}, X {1} Y {2} L Count = {3}, ", i, this.x, this.y, l.Count);
 
-            foreach (var item in l)
-            {
-                points.members[i].x = item.X;
-                points.members[i].y = item.Y;
-                i++;
-            }
+            //foreach (var item in l)
+            //{
+            //    points.members[i].x = item.X;
+            //    points.members[i].y = item.Y;
+            //    i++;
+            //}
+
+            Vector2 mp = getMidpoint(ballPosition);
+            ((FlxSprite)(points.members[0])).x = mp.X;
+            ((FlxSprite)(points.members[0])).y = mp.Y;
+
+            Vector2 mp2 = getMidpoint(mp);
+            ((FlxSprite)(points.members[1])).x = mp2.X;
+            ((FlxSprite)(points.members[1])).y = mp2.Y;
+
+            // Get midpoint between ball and mp
+
+            Vector2 mp3 = FlxU.getMidpoint(mp, ballPosition);
+            ((FlxSprite)(points.members[2])).x = mp3.X;
+            ((FlxSprite)(points.members[2])).y = mp3.Y;
+
+
 
             foreach (var item in points.members)
             {
@@ -193,21 +210,13 @@ namespace Island
             return extendedPoints;
         }
 
-
-
         public override void render(SpriteBatch spriteBatch)
         {
-
-
-            
-
-
             base.render(spriteBatch);
-
-            //foreach (var item in points.members)
-            //{
-            //    item.render(spriteBatch);
-            //}
+            foreach (var item in points.members)
+            {
+                item.render(spriteBatch);
+            }
 
         }
 

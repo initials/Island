@@ -54,10 +54,10 @@ namespace Island
 
             }
 
-            if (FlxControl.CANCELJUSTPRESSED)
-            {
-                FlxG.state = new LoadRomState();
-            }
+            //if (FlxControl.CANCELJUSTPRESSED)
+            //{
+            //    FlxG.state = new LoadRomState();
+            //}
 
             if (FlxControl.ACTIONJUSTPRESSED || FlxG.mouse.pressed() )
             {
