@@ -89,6 +89,7 @@
     <Compile Include="putt\PuttState.cs" />
     <Compile Include="putt\RollIndicator.cs" />
     <Compile Include="putt\ScoreCardState.cs" />
+    <Compile Include="putt\Target.cs" />
     <Compile Include="WinState.cs" />
   </ItemGroup>
   <ItemGroup>

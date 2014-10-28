@@ -39,15 +39,14 @@ namespace Island
             startHealth = false;
 
             points = new FlxGroup();
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 3; i++)
             {
-                FlxSprite point = new FlxSprite(4 * i, 4 * i);
-                point.loadGraphic("Palette_NTSC",true,false,2,2);
-                point.frame = 66 * i;
-                //point.velocity.X = 5;
-                point.scale = 1;
+                Target point = new Target(4 * i, 4 * i);
                 points.add(point);
+
             }
+
+            setOffset(-4, -4);
 
             ballPosition = new Vector2(0, 0);
         }
