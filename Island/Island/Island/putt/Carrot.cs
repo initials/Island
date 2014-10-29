@@ -10,19 +10,18 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Island
 {
-    class Target : FlxSprite
+    class Carrot : FlxSprite
     {
 
-        public Target(int xPos, int yPos)
+        public Carrot(int xPos, int yPos)
             : base(xPos, yPos)
         {
-            loadGraphic(FlxG.Content.Load<Texture2D>("putt/target_8x8"), true, false, 8, 8);
+            loadGraphic("putt/carrot_9x9", true, false, 9, 9);
+            addAnimation("play", new int[] { 0, 1, 2, 3, 4 }, 8);
 
-            addAnimation("animation", new int[] { 0,1,2,3 }, 12, true);
+            addAnimation("pulse", new int[] { 5, 6, 7, 8, 9, 10 }, 8);
 
-            play("animation");
-
-            setOffset(4, 4);
+            play("play");
 
         }
 

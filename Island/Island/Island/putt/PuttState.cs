@@ -48,6 +48,8 @@ namespace Island
         private Hole hole;
 
         private FlxText text;
+        private FlxText subtitle;
+        private Carrot activator;
 
         private int selected;
 
@@ -115,10 +117,7 @@ namespace Island
 
             add(game);
 
-            text = new FlxText(2, 2, 200);
-            text.setFormat(FlxG.Content.Load<SpriteFont>("initials/SMALL_PIXEL"), 1, Color.White, FlxJustification.Left, Color.Black);
-            //text.text = state.ToString();
-            add(text);
+
             
             ball = new Ball(FlxG.width / 2 - 8, FlxG.height - 24);
             
@@ -137,14 +136,14 @@ namespace Island
             add(lee);
 
             aim = new Aim(1, FlxG.height / 2);
-            aim.y = hole.y;
+            aim.y = hole.y - aim.width;
             add(aim);
 
             power = new FlxBar(5, FlxG.height - 20, FlxBar.FILL_LEFT_TO_RIGHT, 100, 8, null, "", 0, 50, true);
             add(power);
             power.visible = false;
 
-            log("Welcome to Lee Carvallo's Putting Challenge. I am Carvallo.");
+            
             
             sound = new FlxSound();
             sound.loadEmbedded("putt/sfx/welcome", false);
@@ -159,7 +158,7 @@ namespace Island
             add(actionButton);
 
 
-            if (FlxG.debug && Globals.platform == "touch")
+            if (FlxG.debug && Globals.platform == "Touch")
             {
                 FlxG.mouse.show();
                 actionButton.visible = true;
@@ -170,12 +169,30 @@ namespace Island
             carPark = new CarPark(0, 0);
             carPark.visible = false;
             add(carPark);
-                
+
+            text = new FlxText(22, 16, 200);
+            text.setFormat(FlxG.Content.Load<SpriteFont>("initials/SMALL_PIXEL"), 1, Color.Yellow, FlxJustification.Left, Color.Black);
+            
+            add(text);
+
+            subtitle = new FlxText(22, 2, FlxG.width);
+            subtitle.setFormat(FlxG.Content.Load<SpriteFont>("initials/SMALL_PIXEL"), 1, Color.White, FlxJustification.Left, Color.Black);
+            
+            add(subtitle);
+
+            activator = new Carrot((int)text.x - 11, (int)text.y);
+            //activator.createGraphic(8, 8, Color.Violet);
+            activator.visible = false;
+            add(activator);
+
+            log("Welcome to Lee Carvallo's Putting Challenge. I am Carvallo.");
         }
 
         public void log(string Log)
         {
             Console.WriteLine("Voice: " + Log);
+
+            subtitle.text = Log;
         }
 
         public void resetSelections()
@@ -186,8 +203,26 @@ namespace Island
 
         public void everyAction()
         {
+            activator.visible = false;
+            //activator.play("pulse");
             FlxG.play("putt/sfx/blip");
             actionButton.scale = 1.5f;
+        }
+
+        public void setText(string Log)
+        {
+            text.text = Log;
+            if (Log != " ")
+            {
+
+                activator.visible = true;
+                activator.play("play");
+
+            }
+            else
+            {
+                activator.visible = false;
+            }
         }
 
         public void loadOgmo()
@@ -219,7 +254,7 @@ namespace Island
 
                     if (x != "-1" && x!="-1\r")
                     {
-                        Console.WriteLine("Roll: {0}", x);
+                        //Console.WriteLine("Roll: {0}", x);
 
                         RollIndicator roll = new RollIndicator(l * 8, r * 8, Convert.ToInt32(x) );
                         add(roll);
@@ -259,7 +294,8 @@ namespace Island
         /// </summary>
         public void chooseIntroduction()
         {
-            text.text = "Hole " + Globals.hole;
+            //text.text = ;
+            //setText("Hole " + Globals.hole);
 
             if (Globals.hole == 1)
             {
@@ -379,7 +415,7 @@ namespace Island
 
             if (framesElapsed == 3)
             {
-                log("Hole: " + Globals.hole + ", Now, choose a club. ");
+                log("Now, choose a club. ");
                 playSound("chooseaclub");
             }
 
@@ -388,7 +424,8 @@ namespace Island
             ball.velocity.X = 0;
             ball.play("size2");
 
-            text.text = clubs[selected].ToString();
+            //text.text = clubs[selected].ToString();
+            setText(clubs[selected].ToString());
 
             if (Globals.ACTIONJUSTPRESSED && (selected == 0 || suggestionForClubNoted))
             {
@@ -397,7 +434,7 @@ namespace Island
                 playClubSound();
                 #endregion
 
-                log(clubs[selected].ToString());
+                //log(clubs[selected].ToString());
                 
                 state = GameState.ChooseForce;
                 resetSelections();
@@ -451,7 +488,9 @@ namespace Island
                 playSound("nowenter");
             }
 
-            text.text = force[selected].ToString();
+            //text.text = force[selected].ToString();
+            setText(force[selected].ToString());
+
 
             if (Globals.ACTIONJUSTPRESSED && (selected == 0 || suggestionForForceNoted || Globals.hole!=1))
             {
@@ -500,7 +539,8 @@ namespace Island
 
             aim.ballPosition = new Vector2(ball.x + (ball.width/2), ball.y + (ball.height/2) );
 
-            text.text = " ";
+            //text.text = " ";
+            setText(" ");
             rollTiles.color = new Color(1, 1, 1, 1.0f);
 
             if (framesElapsed == 3)
@@ -534,7 +574,7 @@ namespace Island
             power.setValue(aim.health);
 
             bool cheat=false;
-            if (FlxG.keys.justPressed(Keys.D5))
+            if (FlxG.keys.justPressed(Keys.D5) || Globals.playThroughAutomatically)
             {
                 cheat = true;
 
@@ -713,10 +753,19 @@ namespace Island
             {
                 log("Would you like to play again?");
                 playSound("wouldyouliketoplayagain");
+                
+                
+
             }
 
-            text.text = playAgain[selected].ToString();
+            //text.text = playAgain[selected].ToString();
+            setText(playAgain[selected].ToString());
 
+            if (Globals.ballInHole==false)
+                if (Globals.playThroughAutomatically) 
+                    selected = 2;
+
+            // SKIP HOLE + 9
             if (FlxControl.CANCELJUSTPRESSED || (Globals.ACTIONJUSTPRESSED && selected == 2))
             {
                 playAgainSelected = 0;
@@ -726,14 +775,16 @@ namespace Island
 
                 Globals.hole++;
                 FlxG.score+=9;
-                if (Globals.ballInHole)
-                {
-                    Globals.scoreCard.Add(FlxG.score);
-                }
-                else
-                {
-                    Globals.scoreCard.Add(0);
-                }
+                Globals.scoreCard.Add(FlxG.score);
+                FlxG.score = 0;
+                //if (Globals.ballInHole)
+                //{
+                    
+                //}
+                //else
+                //{
+                //    Globals.scoreCard.Add(0);
+                //}
 
                 state = GameState.Reset;
                 return;
@@ -749,17 +800,17 @@ namespace Island
                     playSound("youhaveselectedyes");
 
                     Globals.hole++;
-
-
+                    Globals.scoreCard.Add(FlxG.score);
+                    FlxG.score = 0;
                     //SAVE THE SCORE
-                    if (Globals.ballInHole)
-                    {
-                        Globals.scoreCard.Add(FlxG.score);
-                    }
-                    else
-                    {
-                        Globals.scoreCard.Add(0);
-                    }
+                    //if (Globals.ballInHole)
+                    //{
+                        
+                    //}
+                    //else
+                    //{
+                    //    Globals.scoreCard.Add(0);
+                    //}
 
 
 
@@ -863,7 +914,10 @@ namespace Island
             {
                 
             }
-
+            if (Globals.ACTIONJUSTPRESSED)
+            {
+                activator.visible = false;
+            }
             if (sound.getState() == SoundState.Stopped || Globals.hole>1 || Globals.canSkip)
             {
                 if (Globals.ACTIONJUSTPRESSED)

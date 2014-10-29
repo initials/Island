@@ -77,6 +77,7 @@
     <Compile Include="putt\Aim.cs" />
     <Compile Include="putt\Ball.cs" />
     <Compile Include="putt\CarPark.cs" />
+    <Compile Include="putt\Carrot.cs" />
     <Compile Include="putt\Globals.cs" />
     <Compile Include="putt\Hole.cs" />
     <Compile Include="putt\Lee.cs" />
