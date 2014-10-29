@@ -42,7 +42,7 @@ namespace Island
                 {
                     Console.WriteLine("Score for hole {0}: {1}", i + 1, Globals.scoreCard[i]);
                     text.text += string.Format("{0}: {1}, ", i + 1, Globals.scoreCard[i]);
-                    if (Globals.scoreCard[i] == 1) total++;
+                    total += Globals.scoreCard[i];
                     if (i % 3 == 2) text.text += "\n";
                 }
                 catch
@@ -52,12 +52,17 @@ namespace Island
 
             }
 
-            text.text += string.Format("\nTotal {0} / 18 \n", total); ;
+            text.text += string.Format("\nTotal: {0} / Par: 18 \n", total); ;
 
-            if (total < 9) text.text += "\nSix time national champion\nCarvello urges\nyou to keep practicing\nand improve your\nputting game.";
-            else if (total < 18) text.text += "\nYour putting game is improving\nrapidly.\nKeep it up, kid. ";
-            else if (total < 100) text.text += "\nYou're a real sharp shooter.";
-            else if (total < 100 && Globals.hasPlayedHoleAgain==false) text.text += "\nBonestorm.rom unlocked.";
+            
+            
+            
+            if (total <= 18 && Globals.hasPlayedHoleAgain==false) text.text += "\nBonestorm.rom unlocked.";
+            else if (total >= 48) text.text += "\nSix time national champion\nCarvello urges\nyou to keep practicing\nand improve your\nputting game.";
+            else if (total >= 32) text.text += "\nYour putting game is improving\nrapidly.\nKeep it up, kid. ";
+            else if (total >= 24) text.text += "\nYou're a real sharp shooter.";
+            
+            
 
         }
 

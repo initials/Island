@@ -62,7 +62,7 @@ namespace Island
             {
                 speed = 2;
             }
-            else if (Globals.hole < 18)
+            else if (Globals.hole < 19)
             {
                 speed = 3;
             }
@@ -75,7 +75,7 @@ namespace Island
             {
                 hspeed = 1.5f;
             }
-            else if (Globals.hole < 18)
+            else if (Globals.hole < 19)
             {
                 hspeed = 2;
             }

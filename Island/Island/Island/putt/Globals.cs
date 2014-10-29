@@ -35,11 +35,14 @@ namespace Island
 
         public static bool hasPlayedHoleAgain = false;
 
+        public static bool playThroughAutomatically = true;
+
         public static bool ACTIONJUSTPRESSED
         {
             get
             {
-                return FlxG.keys.justPressed(Keys.N) ||
+                return playThroughAutomatically || 
+                    FlxG.keys.justPressed(Keys.N) ||
                     FlxG.keys.justPressed(Keys.X) ||
                     FlxG.keys.justPressed(Keys.Enter) ||
                     FlxG.keys.justPressed(Keys.Space) ||

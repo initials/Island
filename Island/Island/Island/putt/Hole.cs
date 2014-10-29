@@ -20,10 +20,10 @@ namespace Island
             loadAnimationsFromGraphicsGaleCSV("content/putt/hole_25x50.csv", null, null, true);
             play("flapInWind");
 
-            width = 6;
+            width = 8;
             height = 3;
 
-            setOffset(15, 47);
+            setOffset(14, 47);
 
 
 
