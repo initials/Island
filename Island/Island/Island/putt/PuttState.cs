@@ -204,8 +204,11 @@ namespace Island
         public void everyAction()
         {
             activator.visible = false;
-            //activator.play("pulse");
-            FlxG.play("putt/sfx/blip");
+
+            //Bring this back.
+            if (!Globals.playThroughAutomatically)
+                FlxG.play("putt/sfx/blip");
+
             actionButton.scale = 1.5f;
         }
 
@@ -583,11 +586,21 @@ namespace Island
                 string[] split = sp[Globals.hole - 1].Split(',');
 
                 Console.WriteLine("Executing solution for this hole:  Aim:{0}, Power:{1}", split[2], split[3]);
-                
-                aim.x = Convert.ToInt32(split[2]);
-                aim.health = Convert.ToInt32(split[3]);
-                selectedClub = Convert.ToInt32(split[4]);
-                selectedForce = Convert.ToInt32(split[5]);
+
+                if (split[0].StartsWith("x"))
+                {
+                    aim.x = hole.x;
+                    aim.health = 50;
+                    selectedClub = 0;
+                    selectedForce = 0;
+                }
+                else
+                {
+                    aim.x = Convert.ToInt32(split[2]);
+                    aim.health = Convert.ToInt32(split[3]);
+                    selectedClub = Convert.ToInt32(split[4]);
+                    selectedForce = Convert.ToInt32(split[5]);
+                }
 
             }
             if (lee.canHit)

@@ -35,7 +35,7 @@ namespace Island
 
         public static bool hasPlayedHoleAgain = false;
 
-        public static bool playThroughAutomatically = true;
+        public static bool playThroughAutomatically = false;
 
         public static bool ACTIONJUSTPRESSED
         {
