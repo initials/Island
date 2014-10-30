@@ -4,8 +4,8 @@ Hole Aim (x) Power Force: ,3,117,33,0,0
 Hole Aim (x) Power Force: ,4,43,35,0,0
 Hole Aim (x) Power Force: ,5,184,50,0,0
 Hole Aim (x) Power Force: ,6,32,50,0,0
-xHole Aim (x) Power: ,7,128,36,1,0
-xHole Aim (x) Power: ,8,128,36,1,0
+Hole Aim (x) Power Force: ,7,129,40,0,1
+Hole Aim (x) Power Force: ,8,73,39,0,0
 Hole Aim (x) Power Force: ,9,192,50,0,0
 Hole Aim (x) Power Force: ,10,163,49,0,0
 Hole Aim (x) Power Force: ,11,184,50,0,0

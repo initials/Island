@@ -1,7 +1,7 @@
-﻿x=256
-y=224
+﻿x=1024
+y=896
 fullscreen=0
-zoom=1
+zoom=4
 
 
 
