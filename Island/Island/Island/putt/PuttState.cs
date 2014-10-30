@@ -101,9 +101,10 @@ namespace Island
             Globals.ballInHole = false;
 
 
+            //"Sand Wedge" }
+
             clubs = new List<string> { "Putter", "1 Wood", "3 Wood", "5 Wood", 
-                "1 Iron", "2 Iron", "3 Iron", "4 Iron", "5 Iron", "6 Iron", "7 Iron", "8 Iron", "9 Iron", 
-                "Sand Wedge" };
+                "1 Iron", "2 Iron", "3 Iron", "4 Iron", "5 Iron", "6 Iron", "7 Iron", "8 Iron", "9 Iron" };
 
             force = new List<string> { "Feather Touch", "Firm Putt", "Power Drive", "Chip Shot", 
                 "Pitch", "Fade", "Draw", 
@@ -616,11 +617,22 @@ namespace Island
 
                 float multiplier = 1;
 
+                if (selectedClub != 0)
+                {
+                    ball.rise = true;
+                    selectedForce = 2;
+                    aim.health = 50;
+                }
+
+
+                // 0: Feather Touch.
                 switch (selectedForce)
                 {
+                    // 1: Firm Putt.
                     case 1:
                         multiplier+=0.35f;
                         break;
+                        // 2: Power Drive
                     case 2:
                         multiplier *= 5.0f;
                         break;
@@ -630,10 +642,7 @@ namespace Island
 
                 int initialPower = 5;
 
-                if (selectedClub != 0 && selectedClub != 1)
-                {
-                    ball.rise = true;
-                }
+
 
                 ball.setVelocityFromAngle(initialPower + (aim.health * multiplier));
 
@@ -1008,8 +1017,11 @@ namespace Island
         protected bool ballInHole(object Sender, FlxSpriteCollisionEvent e)
         {
             Console.WriteLine("Ball speed at time of sinking x {0} y {1} -- ball x/y {2} {3} hole x/y {4} {5} ", ball.velocity.X, ball.velocity.Y, ball.x, ball.y,hole.x,hole.y);
-            
-            if (ball.velocity.Y < -35)
+            if (ball.rise == true)
+            {
+                return false;
+            }
+            else if (ball.velocity.Y < -35)
             {
                 // Voice -- "A little too much juice on that one. Next time try a softer approach.
                 // too fast to sink
@@ -1023,10 +1035,7 @@ namespace Island
                     ball.velocity.X = -56;
 
             }
-            else if (ball.rise == true)
-            {
-                return false;
-            }
+            
             else
             {
                 //went in the hole.
