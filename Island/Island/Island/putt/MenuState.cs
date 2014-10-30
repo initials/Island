@@ -82,7 +82,10 @@ namespace Island
                     FlxG.state = new PuttState();
                 }
             }
-
+            if (FlxGlobal.cheatString.StartsWith("okgo"))
+            {
+                Globals.playThroughAutomatically = true;
+            }
             if (FlxGlobal.cheatString.StartsWith("hole"))
             {
                 Globals.hasPlayedHoleAgain = false;

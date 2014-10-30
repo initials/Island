@@ -25,18 +25,36 @@ namespace Island
         /// </summary>
         public static string platform = "PC";
 
+        /// <summary>
+        /// Can skip the audio.
+        /// </summary>
         public static bool canSkip = false;
 
+        /// <summary>
+        /// Did it sink?
+        /// </summary>
         public static bool ballInHole = false;
 
+        /// <summary>
+        /// Keeps score.
+        /// </summary>
         public static List<int> scoreCard = new List<int> { };
 
         //public static Vector2 ballStartPosition = new Vector2(FlxG.width / 2 - 2, FlxG.height - 15);
 
+        /// <summary>
+        /// counts if hole takes more than one.
+        /// </summary>
         public static bool hasPlayedHoleAgain = false;
 
+        /// <summary>
+        /// Allows the game to play through by itself.
+        /// </summary>
         public static bool playThroughAutomatically = false;
 
+        /// <summary>
+        /// Includes Play Through Automatically.
+        /// </summary>
         public static bool ACTIONJUSTPRESSED
         {
             get
