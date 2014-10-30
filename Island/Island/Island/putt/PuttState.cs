@@ -142,7 +142,7 @@ namespace Island
             power = new FlxBar(5, FlxG.height - 20, FlxBar.FILL_LEFT_TO_RIGHT, 100, 8, null, "", 0, 50, true);
             add(power);
             power.visible = false;
-
+            power.useCustomColors = true;
             
             
             sound = new FlxSound();
@@ -684,7 +684,8 @@ namespace Island
             {
                 //Console.WriteLine("-- Ball.x/y {0} {1}", ball.x, ball.y);
 
-                log("Ball is in ... ");
+                //log("Ball is in ... ");
+
                 //playSound("ballisin");
                 power.visible = false;
             }
