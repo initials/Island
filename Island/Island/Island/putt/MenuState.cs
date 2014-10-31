@@ -21,7 +21,7 @@ namespace Island
             base.create();
 
             menu = new FlxSprite(0, 0);
-            menu.loadGraphic("putt/menu", true, false, 256, 224);
+            menu.loadGraphic(Globals.ContentFolder + "/menu", true, false, 256, 224);
             add(menu);
 
             toPlay = false;

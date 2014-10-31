@@ -2,7 +2,7 @@
 
 
 Alt-names.
-"Big" John Lovatto's Putting Championship
+"Big" John McWilliam's Putting Championship
 stormin norman mcwilliam's championship putting
 
 
