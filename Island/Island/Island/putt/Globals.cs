@@ -45,7 +45,7 @@ namespace Island
         /// <summary>
         /// PC, Touch,
         /// </summary>
-        public static string platform = "PC";
+        public static string platform = "Touch";
 
         /// <summary>
         /// Can skip the audio.

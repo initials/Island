@@ -139,7 +139,7 @@ namespace Island
             aim.y = hole.y - aim.width;
             add(aim);
 
-            power = new FlxBar(5, FlxG.height - 20, FlxBar.FILL_LEFT_TO_RIGHT, 100, 8, null, "", 0, 50, true);
+            power = new FlxBar(FlxG.width-110, FlxG.height - 30, FlxBar.FILL_LEFT_TO_RIGHT, 80, 8, null, "", 0, 50, true);
             add(power);
             power.visible = false;
             power.useCustomColors = true;
