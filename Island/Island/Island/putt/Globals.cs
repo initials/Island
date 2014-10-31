@@ -15,6 +15,8 @@ namespace Island
     /// </summary>
     public class Globals
     {
+
+        public static string ContentFolder = "putt_r";
         /// <summary>
         /// Holes 1 - 18
         /// </summary>
