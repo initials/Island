@@ -124,6 +124,11 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="putt\bg_ws.png">
+      <Name>bg_ws</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Content Include="putt\lee_150x150.csv">
       <Name>lee_150x150</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
