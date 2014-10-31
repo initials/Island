@@ -161,8 +161,12 @@ namespace Island
             if (FlxG.debug && Globals.platform == "Touch")
             {
                 FlxG.mouse.show();
+            }
+            if (Globals.platform == "Touch")
+            {
                 actionButton.visible = true;
             }
+
             
             add(rollIndicators);
 
