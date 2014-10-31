@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Lee Carvallo's Putting Challenge")]
-[assembly: AssemblyProduct("Lee Carvallo's Putting Challenge")]
+//[assembly: AssemblyTitle("Lee Carvallo's Putting Challenge")]
+//[assembly: AssemblyProduct("Lee Carvallo's Putting Challenge")]
+[assembly: AssemblyTitle("Roberto Selavino's Putting Championship")]
+[assembly: AssemblyProduct("Roberto Selavino's Putting Championship")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("initials")]
 [assembly: AssemblyCopyright("")]

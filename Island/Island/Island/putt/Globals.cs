@@ -16,7 +16,27 @@ namespace Island
     public class Globals
     {
 
+
+        /// <summary>
+        /// putt_r to set the game to Roberto Selovino's
+        /// </summary>
         public static string ContentFolder = "putt_r";
+
+        public static string GameName
+        {
+            get
+            {
+                if (ContentFolder == "putt_r")
+                {
+                    return "Roberto Selavino's Putting Championship";
+                }
+                else
+                {
+                    return "Lee Carvallo's Putting Challenge";
+                }
+            }
+        }
+
         /// <summary>
         /// Holes 1 - 18
         /// </summary>

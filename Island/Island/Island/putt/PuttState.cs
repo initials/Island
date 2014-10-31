@@ -146,7 +146,7 @@ namespace Island
             
             
             sound = new FlxSound();
-            sound.loadEmbedded("putt/sfx/welcome", false);
+            sound.loadEmbedded(Globals.ContentFolder + "/sfx/welcome", false);
 
             if (Globals.hole == 1)
             {
@@ -185,7 +185,7 @@ namespace Island
             activator.visible = false;
             add(activator);
 
-            log("Welcome to Lee Carvallo's Putting Challenge. I am Carvallo.");
+            log("Welcome to " + Globals.GameName);
         }
 
         public void log(string Log)
@@ -309,7 +309,7 @@ namespace Island
                 else
                 {
                     lee.debugName = "introduction";
-                    playSound("iamcarvallo");
+                    playSoundFromContentFolder("iamcarvallo");
                 }
             }
             else
@@ -902,6 +902,12 @@ namespace Island
         public void playSound(string Sound)
         {
             sound.loadEmbedded("putt/sfx/" + Sound, false);
+            sound.play();
+        }
+
+        public void playSoundFromContentFolder(string Sound)
+        {
+            sound.loadEmbedded(Globals.ContentFolder + "/sfx/" + Sound, false);
             sound.play();
         }
 
