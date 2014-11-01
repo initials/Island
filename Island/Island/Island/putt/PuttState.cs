@@ -189,7 +189,7 @@ namespace Island
             activator.visible = false;
             add(activator);
 
-            log("Welcome to " + Globals.GameName);
+            log("Welcome to " + Globals.GameNameSplit);
         }
 
         public void log(string Log)
@@ -250,7 +250,7 @@ namespace Island
             string[] rows = ogmo["roll"].Split('\n');
             int heightInTiles = rows.Length;
             int r = 0;
-            int c;
+            //int c;
             
             foreach (var item in rows)
             {

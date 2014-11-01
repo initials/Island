@@ -37,6 +37,21 @@ namespace Island
             }
         }
 
+        public static string GameNameSplit
+        {
+            get
+            {
+                if (ContentFolder == "putt_r")
+                {
+                    return "Roberto Selavino's\nPutting Championship";
+                }
+                else
+                {
+                    return "Lee Carvallo's\nPutting Challenge";
+                }
+            }
+        }
+
         /// <summary>
         /// Holes 1 - 18
         /// </summary>
@@ -45,7 +60,7 @@ namespace Island
         /// <summary>
         /// PC, Touch,
         /// </summary>
-        public static string platform = "Touch";
+        public static string platform = "PC";
 
         /// <summary>
         /// Can skip the audio.
