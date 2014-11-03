@@ -82,6 +82,13 @@ namespace Island
                     FlxG.state = new PuttState();
                 }
             }
+
+            /* CHEAT CODES
+             * okgo - Play through automatically.
+             * hole# // hole## go straight to hole ##
+             * bonestorm - play Lee Carvallo's Putting Challenge
+             * rob - play Roberto Selavino's Putting Championship
+             */ 
             if (FlxGlobal.cheatString.StartsWith("okgo"))
             {
                 Globals.playThroughAutomatically = true;
@@ -94,6 +101,14 @@ namespace Island
                 Globals.canSkip = false;
                 FlxG.state = new PuttState();
                 return;
+            }
+            if (FlxGlobal.cheatString.StartsWith("bonestorm"))
+            {
+                Globals.ContentFolder = "putt";
+            }
+            if (FlxGlobal.cheatString.StartsWith("rob"))
+            {
+                Globals.ContentFolder = "putt_r";
             }
 
             base.update();

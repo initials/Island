@@ -72,6 +72,8 @@ namespace Island
         /// </summary>
         public static bool ballInHole = false;
 
+        public static bool pirate = false;
+
         /// <summary>
         /// Keeps score.
         /// </summary>

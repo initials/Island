@@ -42,6 +42,10 @@ namespace Loader_Four
 #if DEBUG
             FlxG.debug = true;
 #endif
+#if ISLANDPIRATE
+            Island.Globals.pirate = true;
+#endif
+
 
 
 
