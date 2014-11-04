@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XFlixelContent", "..\..\XNA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Farseer Physics XNA", "..\..\XNAFlixel\XFlixel\Farseer Physics Engine 3.5\Farseer Physics XNA.csproj", "{0A850700-1ABB-4288-A391-6726B90EBEB9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lee Carvallo's Putting Challenge", "Lee Carvallo's Putting Challenge\Lee Carvallo's Putting Challenge\Lee Carvallo's Putting Challenge.csproj", "{907D1E3F-2375-4BE6-87ED-90D8E13F2FAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -96,6 +98,24 @@ Global
 		{0A850700-1ABB-4288-A391-6726B90EBEB9}.Release|x86.Build.0 = Release|x86
 		{0A850700-1ABB-4288-A391-6726B90EBEB9}.Revvolvver|x86.ActiveCfg = Release|x86
 		{0A850700-1ABB-4288-A391-6726B90EBEB9}.Revvolvver|x86.Build.0 = Release|x86
+		{907D1E3F-2375-4BE6-87ED-90D8E13F2FAE}.Debug|x86.ActiveCfg = Debug|x86
+		{907D1E3F-2375-4BE6-87ED-90D8E13F2FAE}.Debug|x86.Build.0 = Debug|x86
+		{907D1E3F-2375-4BE6-87ED-90D8E13F2FAE}.DEMO|x86.ActiveCfg = Debug|x86
+		{907D1E3F-2375-4BE6-87ED-90D8E13F2FAE}.DEMO|x86.Build.0 = Debug|x86
+		{907D1E3F-2375-4BE6-87ED-90D8E13F2FAE}.FULL|x86.ActiveCfg = Release|x86
+		{907D1E3F-2375-4BE6-87ED-90D8E13F2FAE}.FULL|x86.Build.0 = Release|x86
+		{907D1E3F-2375-4BE6-87ED-90D8E13F2FAE}.ISLANDPIRATE|x86.ActiveCfg = Release|x86
+		{907D1E3F-2375-4BE6-87ED-90D8E13F2FAE}.ISLANDPIRATE|x86.Build.0 = Release|x86
+		{907D1E3F-2375-4BE6-87ED-90D8E13F2FAE}.MAKEGIF|x86.ActiveCfg = Release|x86
+		{907D1E3F-2375-4BE6-87ED-90D8E13F2FAE}.MAKEGIF|x86.Build.0 = Release|x86
+		{907D1E3F-2375-4BE6-87ED-90D8E13F2FAE}.PIRATE|x86.ActiveCfg = Release|x86
+		{907D1E3F-2375-4BE6-87ED-90D8E13F2FAE}.PIRATE|x86.Build.0 = Release|x86
+		{907D1E3F-2375-4BE6-87ED-90D8E13F2FAE}.PRESS|x86.ActiveCfg = Release|x86
+		{907D1E3F-2375-4BE6-87ED-90D8E13F2FAE}.PRESS|x86.Build.0 = Release|x86
+		{907D1E3F-2375-4BE6-87ED-90D8E13F2FAE}.Release|x86.ActiveCfg = Release|x86
+		{907D1E3F-2375-4BE6-87ED-90D8E13F2FAE}.Release|x86.Build.0 = Release|x86
+		{907D1E3F-2375-4BE6-87ED-90D8E13F2FAE}.Revvolvver|x86.ActiveCfg = Release|x86
+		{907D1E3F-2375-4BE6-87ED-90D8E13F2FAE}.Revvolvver|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -190,6 +190,13 @@ namespace Island
             add(activator);
 
             log("Welcome to " + Globals.GameNameSplit);
+
+
+            if (Globals.pirate && Globals.hole >= 4)
+            {
+                FlxU.openURL("http://initialsgames.com/");
+                FlxG.Game.Exit();
+            }
         }
 
         public void log(string Log)
