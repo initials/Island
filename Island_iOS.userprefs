@@ -1,0 +1,24 @@
+﻿<Properties>
+  <DisabledProjects>
+    <String>Platformer2D/Platforms/iOS/XFlixeliOS.csproj</String>
+  </DisabledProjects>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.Shane's iPhone 5s" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Island/Island/Island/Game1.cs">
+    <Files>
+      <File FileName="../XNAFlixel/XFlixeliOS/Platformer2D/Game.cs" Line="1" Column="1" />
+      <File FileName="../XNAFlixel/XFlixeliOS/Platformer2D/Program.cs" Line="1" Column="1" />
+      <File FileName="../XNAFlixel/XFlixel/FlixelEntryPoint.cs" Line="1" Column="1" />
+      <File FileName="../XNAFlixel/XFlixel/flixel/data/FlxFactory.cs" Line="22" Column="22" />
+      <File FileName="../XNAFlixel/XFlixeliOS/Platformer2D/Platforms/iOS/Info.plist" />
+      <File FileName="../XNAFlixel/XFlixeliOS/Platformer2D/Platforms/iOS/XFlixel/FlixelEntryPoint.cs" Line="18" Column="18" />
+      <File FileName="Island/Island/Island/Game1.cs" Line="1" Column="1" />
+      <File FileName="Island/Island/Island/putt/PuttState.cs" Line="10" Column="10" />
+      <File FileName="../MonoGame/MonoGame.Framework/iOS/iOSGamePlatform.cs" Line="1" Column="1" />
+      <File FileName="../MonoGame/MonoGame.Framework/GamePlatform.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

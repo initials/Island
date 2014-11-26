@@ -194,8 +194,13 @@ namespace Island
 
             if (Globals.pirate && Globals.hole >= 4)
             {
+				#if ! __IOS__
                 FlxU.openURL("http://initialsgames.com/");
+
+
                 FlxG.Game.Exit();
+				#endif
+
             }
         }
 
