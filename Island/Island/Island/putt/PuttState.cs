@@ -175,12 +175,12 @@ namespace Island
             add(carPark);
 
             text = new FlxText(22, 16, 200);
-            text.setFormat(FlxG.Content.Load<SpriteFont>("initials/SMALL_PIXEL"), 1, Color.Yellow, FlxJustification.Left, Color.Black);
+            text.setFormat(FlxG.Content.Load<SpriteFont>("flixel/initials/SMALL_PIXEL"), 1, Color.Yellow, FlxJustification.Left, Color.Black);
             
             add(text);
 
             subtitle = new FlxText(22, 2, FlxG.width);
-            subtitle.setFormat(FlxG.Content.Load<SpriteFont>("initials/SMALL_PIXEL"), 1, Color.White, FlxJustification.Left, Color.Black);
+            subtitle.setFormat(FlxG.Content.Load<SpriteFont>("flixel/initials/SMALL_PIXEL"), 1, Color.White, FlxJustification.Left, Color.Black);
             
             add(subtitle);
 

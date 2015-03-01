@@ -29,7 +29,7 @@ namespace Island
         public Aim(int xPos, int yPos)
             : base(xPos, yPos)
         {
-            loadGraphic("initials/crosshair");
+            loadGraphic("flixel/initials/crosshair");
 
             direction = false;
             hdirection = false;

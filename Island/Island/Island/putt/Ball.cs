@@ -25,7 +25,7 @@ namespace Island
             : base(xPos, yPos)
         {
             loadGraphic("putt/ball_8x8", false, false, 8, 8);
-            loadAnimationsFromGraphicsGaleCSV("content/putt/ball_8x8.csv");
+            addAnimationsFromGraphicsGaleCSV("content/putt/ball_8x8.csv");
             play("size2");
 
 
