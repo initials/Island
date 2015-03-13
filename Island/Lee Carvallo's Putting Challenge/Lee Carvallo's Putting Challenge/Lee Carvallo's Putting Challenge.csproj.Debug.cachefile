@@ -102,6 +102,7 @@ Content\flixel\key_plus.xnb
 Content\flixel\key_x.xnb
 Content\flixel\poweredby.xnb
 Content\flixel\xna_tiles.xnb
+<<<<<<< HEAD
 Content\flixel\initials\initialsLogo.xnb
 Content\flixel\transition_40x40.xnb
 Content\flixel\buttons\BP3_SSTRIP_32.xnb
@@ -110,6 +111,10 @@ Content\flixel\buttons\BP3_SSTRIP_64.xnb
 Content\flixel\transition_30x30.xnb
 Content\flixel\initials\crosshair.xnb
 Content\flixel\diagnostic\testpalette.xnb
+=======
+Content\flixel\transition_40x40.xnb
+Content\flixel\transition_30x30.xnb
+>>>>>>> origin/master
 Content\flixel\vcr\open.xnb
 Content\flixel\vcr\pause.xnb
 Content\flixel\vcr\play.xnb
@@ -119,6 +124,24 @@ Content\flixel\vcr\restart.xnb
 Content\flixel\vcr\step.xnb
 Content\flixel\vcr\stop.xnb
 Content\flixel\vcr\cheat_on.xnb
+<<<<<<< HEAD
+=======
+Content\flixel\autotiles_16x16.xnb
+Content\flixel\autotiles_alt_16x16.xnb
+Content\flixel\vcr\cheat_off.xnb
+Content\flixel\beep.xnb
+Content\flixel\flixel.xnb
+Content\flixel\deffont.xnb
+Content\flixel\autotilesIsland_16x16.xnb
+Content\flixel\autotilesIsland.xnb
+Content\flixel\transitionBlack_40x40.xnb
+Content\flixel\initials\initialsLogo.xnb
+Content\flixel\buttons\BP3_SSTRIP_32.xnb
+Content\flixel\buttons\BP3_SSTRIP_48.xnb
+Content\flixel\buttons\BP3_SSTRIP_64.xnb
+Content\flixel\initials\crosshair.xnb
+Content\flixel\diagnostic\testpalette.xnb
+>>>>>>> origin/master
 Content\flixel\buttons\MapBlack.xnb
 Content\flixel\buttons\MapWhite.xnb
 Content\flixel\buttons\MapOuya.xnb
@@ -126,9 +149,12 @@ Content\flixel\buttons\Map360.xnb
 Content\flixel\initials\autotiles.xnb
 Content\flixel\initials\autotiles_16x16.xnb
 Content\flixel\initials\autotiles_alt.xnb
+<<<<<<< HEAD
 Content\flixel\autotiles_16x16.xnb
 Content\flixel\autotiles_alt_16x16.xnb
 Content\flixel\vcr\cheat_off.xnb
+=======
+>>>>>>> origin/master
 Content\flixel\surt\spaceship_32x32.xnb
 Content\flixel\surt\race_or_die.xnb
 Content\flixel\initials\crate_80x60.xnb
@@ -137,6 +163,7 @@ Content\flixel\oga\GoldCoin.xnb
 Content\flixel\buttons\Map360Gameboy.xnb
 Content\flixel\buttons\MapOuyaGameboy.xnb
 Content\flixel\buttons\MapWhiteGameboy.xnb
+<<<<<<< HEAD
 Content\flixel\autotilesIsland_16x16.xnb
 Content\flixel\autotilesIsland.xnb
 Content\flixel\initials\boats.xnb
@@ -147,18 +174,31 @@ Content\flixel\diagnostic\checkerboard.xnb
 Content\flixel\pixel.xnb
 Content\flixel\beep.xnb
 Content\flixel\flixel.xnb
+=======
+Content\flixel\initials\boats.xnb
+Content\flixel\initials\healthBar.xnb
+>>>>>>> origin/master
 Content\flixel\initials\initials_empire_tagtone1.xnb
 Content\flixel\initials\initials_empire_tagtone2.xnb
 Content\flixel\initials\initials_empire_tagtone3.xnb
 Content\flixel\initials\initials_empire_tagtone4.xnb
 Content\flixel\initials\FourChambers_IntroTag_03.xnb
+<<<<<<< HEAD
 Content\flixel\deffont.xnb
+=======
+>>>>>>> origin/master
 Content\flixel\initials\Munro.xnb
 Content\flixel\initials\SpaceMarine.xnb
 Content\flixel\initials\SMALL_PIXEL.xnb
 Content\flixel\fx\BloomCombine.xnb
 Content\flixel\fx\BloomExtract.xnb
 Content\flixel\fx\GaussianBlur.xnb
+<<<<<<< HEAD
+=======
+Content\flixel\buttons\gameIcons.xnb
+Content\flixel\diagnostic\checkerboard.xnb
+Content\flixel\pixel.xnb
+>>>>>>> origin/master
 Content\flixel\autotiles.xnb
 Content\flixel\autotiles_alt.xnb
 Content\flixel\cursor.xnb
@@ -172,6 +212,7 @@ Content\flixel\key_plus.xnb
 Content\flixel\key_x.xnb
 Content\flixel\poweredby.xnb
 Content\flixel\xna_tiles.xnb
+<<<<<<< HEAD
 Content\flixel\initials\initialsLogo.xnb
 Content\flixel\transition_40x40.xnb
 Content\flixel\buttons\BP3_SSTRIP_32.xnb
@@ -180,6 +221,10 @@ Content\flixel\buttons\BP3_SSTRIP_64.xnb
 Content\flixel\transition_30x30.xnb
 Content\flixel\initials\crosshair.xnb
 Content\flixel\diagnostic\testpalette.xnb
+=======
+Content\flixel\transition_40x40.xnb
+Content\flixel\transition_30x30.xnb
+>>>>>>> origin/master
 Content\flixel\vcr\open.xnb
 Content\flixel\vcr\pause.xnb
 Content\flixel\vcr\play.xnb
@@ -189,6 +234,24 @@ Content\flixel\vcr\restart.xnb
 Content\flixel\vcr\step.xnb
 Content\flixel\vcr\stop.xnb
 Content\flixel\vcr\cheat_on.xnb
+<<<<<<< HEAD
+=======
+Content\flixel\autotiles_16x16.xnb
+Content\flixel\autotiles_alt_16x16.xnb
+Content\flixel\vcr\cheat_off.xnb
+Content\flixel\autotilesIsland_16x16.xnb
+Content\flixel\autotilesIsland.xnb
+Content\flixel\beep.xnb
+Content\flixel\flixel.xnb
+Content\flixel\deffont.xnb
+Content\flixel\transitionBlack_40x40.xnb
+Content\flixel\initials\initialsLogo.xnb
+Content\flixel\buttons\BP3_SSTRIP_32.xnb
+Content\flixel\buttons\BP3_SSTRIP_48.xnb
+Content\flixel\buttons\BP3_SSTRIP_64.xnb
+Content\flixel\initials\crosshair.xnb
+Content\flixel\diagnostic\testpalette.xnb
+>>>>>>> origin/master
 Content\flixel\buttons\MapBlack.xnb
 Content\flixel\buttons\MapWhite.xnb
 Content\flixel\buttons\MapOuya.xnb
@@ -196,9 +259,12 @@ Content\flixel\buttons\Map360.xnb
 Content\flixel\initials\autotiles.xnb
 Content\flixel\initials\autotiles_16x16.xnb
 Content\flixel\initials\autotiles_alt.xnb
+<<<<<<< HEAD
 Content\flixel\autotiles_16x16.xnb
 Content\flixel\autotiles_alt_16x16.xnb
 Content\flixel\vcr\cheat_off.xnb
+=======
+>>>>>>> origin/master
 Content\flixel\surt\spaceship_32x32.xnb
 Content\flixel\surt\race_or_die.xnb
 Content\flixel\initials\crate_80x60.xnb
@@ -207,22 +273,32 @@ Content\flixel\oga\GoldCoin.xnb
 Content\flixel\buttons\Map360Gameboy.xnb
 Content\flixel\buttons\MapOuyaGameboy.xnb
 Content\flixel\buttons\MapWhiteGameboy.xnb
+<<<<<<< HEAD
 Content\flixel\autotilesIsland_16x16.xnb
 Content\flixel\autotilesIsland.xnb
 Content\flixel\initials\boats.xnb
 Content\flixel\transitionBlack_40x40.xnb
+=======
+Content\flixel\initials\boats.xnb
+>>>>>>> origin/master
 Content\flixel\initials\healthBar.xnb
 Content\flixel\buttons\gameIcons.xnb
 Content\flixel\diagnostic\checkerboard.xnb
 Content\flixel\pixel.xnb
+<<<<<<< HEAD
 Content\flixel\beep.xnb
 Content\flixel\flixel.xnb
+=======
+>>>>>>> origin/master
 Content\flixel\initials\initials_empire_tagtone1.xnb
 Content\flixel\initials\initials_empire_tagtone2.xnb
 Content\flixel\initials\initials_empire_tagtone3.xnb
 Content\flixel\initials\initials_empire_tagtone4.xnb
 Content\flixel\initials\FourChambers_IntroTag_03.xnb
+<<<<<<< HEAD
 Content\flixel\deffont.xnb
+=======
+>>>>>>> origin/master
 Content\flixel\initials\Munro.xnb
 Content\flixel\initials\SpaceMarine.xnb
 Content\flixel\initials\SMALL_PIXEL.xnb
@@ -241,6 +317,7 @@ Content\putt\hole.xnb
 Content\putt\lee.xnb
 Content\putt\lee_150x150.xnb
 Content\putt\ball_8x8.xnb
+<<<<<<< HEAD
 Content\putt\golfball.xnb
 Content\putt\golfball_50x50.xnb
 Content\putt\carPark.xnb
@@ -255,6 +332,8 @@ Content\putt\rollAnimDiag_8x8.xnb
 Content\putt_r\lee_200x200.xnb
 Content\putt_r\menu.xnb
 Content\putt\carrot_9x9.xnb
+=======
+>>>>>>> origin/master
 Content\putt\sfx\putt.xnb
 Content\putt\sfx\blip.xnb
 Content\putt\sfx\select.xnb
@@ -293,12 +372,26 @@ Content\putt\sfx\youhaveselectedyes.xnb
 Content\putt\sfx\isuggest.xnb
 Content\putt\sfx\isuggestfeathertouch.xnb
 Content\putt\sfx\mayisuggestaputter.xnb
+<<<<<<< HEAD
 Content\putt\sfx\ballisin.xnb
 Content\putt\music\GreenlandIsAlive.xnb
 Content\putt\sfx\hole2.xnb
 Content\putt\sfx\hole3.xnb
 Content\putt\sfx\ballisinthehole.xnb
 Content\putt\sfx\hole18.xnb
+=======
+Content\putt\golfball.xnb
+Content\putt\golfball_50x50.xnb
+Content\putt\sfx\ballisin.xnb
+Content\putt\music\GreenlandIsAlive.xnb
+Content\putt\sfx\hole2.xnb
+Content\putt\rollIndicators.xnb
+Content\putt\sfx\hole3.xnb
+Content\putt\sfx\ballisinthehole.xnb
+Content\putt\sfx\hole18.xnb
+Content\putt\carPark.xnb
+Content\putt\hole_25x50.xnb
+>>>>>>> origin/master
 Content\putt\sfx\ballisinparkinglot.xnb
 Content\putt\sfx\firmputt.xnb
 Content\putt\sfx\alittletoomuchjuice.xnb
@@ -307,6 +400,18 @@ Content\putt\sfx\ballisoverthegreen.xnb
 Content\putt\sfx\extremelyclose.xnb
 Content\putt\sfx\youdidnotsink.xnb
 Content\putt\music\March.xnb
+<<<<<<< HEAD
+=======
+Content\_sheet_window_06.xnb
+Content\putt\lee_200x200.xnb
+Content\putt\rollAnim_8x8.xnb
+Content\putt\target_8x8.xnb
+Content\putt\rollAnimDiag_8x8.xnb
+Content\putt\carrot_9x9.xnb
+Content\putt\bg_ws.xnb
+Content\putt_r\lee_200x200.xnb
+Content\putt_r\menu.xnb
+>>>>>>> origin/master
 Content\putt_r\sfx\welcome.xnb
 Content\putt_r\sfx\iamcarvallo.xnb
 Content\putt\music\GreenlandIsAlive.wma
