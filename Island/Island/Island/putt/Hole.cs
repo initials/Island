@@ -17,7 +17,7 @@ namespace Island
             : base(xPos, yPos)
         {
             loadGraphic(FlxG.Content.Load<Texture2D>("putt/hole_25x50"), true, false, 25, 50);
-            loadAnimationsFromGraphicsGaleCSV("content/putt/hole_25x50.csv", null, null, true);
+            addAnimationsFromGraphicsGaleCSV("content/putt/hole_25x50.csv", null, null, true);
             play("flapInWind");
 
             width = 8;

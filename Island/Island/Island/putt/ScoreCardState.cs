@@ -30,7 +30,7 @@ namespace Island
             FlxG.playMp3("putt/music/March", 1.0f);
 
             text = new FlxText(16, 16, 200);
-            text.setFormat(FlxG.Content.Load<SpriteFont>("initials/SMALL_PIXEL"), 1, Color.Black, FlxJustification.Left, Color.White);
+            text.setFormat(FlxG.Content.Load<SpriteFont>("flixel/initials/SMALL_PIXEL"), 1, Color.Black, FlxJustification.Left, Color.White);
             add(text);
             text.text = "Scorecard:\n";
 

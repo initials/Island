@@ -23,7 +23,7 @@ namespace Island
 
 
             loadGraphic(FlxG.Content.Load<Texture2D>(Globals.ContentFolder + "/lee_200x200"), true, false, 200, 200);
-            loadAnimationsFromGraphicsGaleCSV("content/putt/lee_200x200.csv", null, new List<string> {"introduction_talk", "swing_wood", "swing_putter", "swing_iron"}, true);
+            addAnimationsFromGraphicsGaleCSV("content/putt/lee_200x200.csv", null, new List<string> {"introduction_talk", "swing_wood", "swing_putter", "swing_iron"}, true);
             //addAnimation("idlex_putter", new int[] { 15,16 }, 12);
             boundingBoxOverride = false;
             debugName = "";

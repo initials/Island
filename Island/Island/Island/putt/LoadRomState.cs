@@ -48,11 +48,11 @@ namespace Island
 
             gamesDisplay = new FlxText(2, 12, 200);
             //text1.setFormat(FlxG.Content.Load<SpriteFont>("Lemonade/SMALL_PIXEL"), 3, new Color(237, 0, 142), FlxJustification.Center, Color.Black);
-            gamesDisplay.setFormat(FlxG.Content.Load<SpriteFont>("initials/SMALL_PIXEL"), 1, Color.White, FlxJustification.Left, Color.Black); //FlxG.Content.Load<SpriteFont> ("")
+            gamesDisplay.setFormat(FlxG.Content.Load<SpriteFont>("flixel/initials/SMALL_PIXEL"), 1, Color.White, FlxJustification.Left, Color.Black); //FlxG.Content.Load<SpriteFont> ("")
             add(gamesDisplay);
 
             status = new FlxText(2, 2, 200);
-            status.setFormat(FlxG.Content.Load<SpriteFont>("initials/SMALL_PIXEL"), 1, Color.Red, FlxJustification.Left, Color.Black); //FlxG.Content.Load<SpriteFont> ("")
+            status.setFormat(FlxG.Content.Load<SpriteFont>("flixel/initials/SMALL_PIXEL"), 1, Color.Red, FlxJustification.Left, Color.Black); //FlxG.Content.Load<SpriteFont> ("")
             add(status);
 
         }
